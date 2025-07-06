@@ -34,14 +34,8 @@
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--backgroundColor);
   overflow-x: hidden;
-}
-
-#root{
-  width: 100%;
 }

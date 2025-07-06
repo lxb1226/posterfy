@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable react/prop-types */
 import styled from 'styled-components';
 import { FaSearch } from "react-icons/fa";
@@ -60,9 +62,9 @@ const Input = styled.input`
     width: 100%;
 `
 
-function Searchbar({ onSearch }) {
+function Searchbar({ onSearch, defaultValue = '' }) {
     const { t } = useTranslation();
-    const [searchValue, setSearchValue] = useState('');
+    const [searchValue, setSearchValue] = useState(defaultValue);
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {

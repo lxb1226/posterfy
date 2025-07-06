@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -25,8 +27,8 @@ function Grid({ query, onclick }) {
 
     useEffect(() => {
         const fetchAccessToken = async () => {
-            const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-            const clientSecret = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
+            const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || process.env.SPOTIFY_CLIENT_ID;
+            const clientSecret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET || process.env.SPOTIFY_CLIENT_SECRET;
 
             const response = await fetch('https://accounts.spotify.com/api/token', {
                 method: 'POST',

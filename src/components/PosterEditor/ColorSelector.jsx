@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 import { HexColorPicker } from "react-colorful";

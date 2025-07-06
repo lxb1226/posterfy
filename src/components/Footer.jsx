@@ -1,3 +1,5 @@
+'use client'
+
 import styled, { keyframes } from "styled-components"
 import { useTranslation } from "react-i18next"
 import Icon from "./icons/icon"
@@ -351,11 +353,20 @@ const GithubLink = styled.a`
 
 function Footer() {
   const { t } = useTranslation()
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "theme-dark")
+  const [theme, setTheme] = useState("theme-dark")
 
   useEffect(() => {
-    document.body.className = theme
-    localStorage.setItem("theme", theme)
+    // 只在客户端执行
+    const savedTheme = localStorage.getItem("theme") || "theme-dark"
+    setTheme(savedTheme)
+    document.body.className = savedTheme
+  }, [])
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      document.body.className = theme
+      localStorage.setItem("theme", theme)
+    }
   }, [theme])
 
   const handleThemeChange = (newTheme) => {

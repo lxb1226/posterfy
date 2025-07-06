@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable react/prop-types */
 import { useRef, useEffect } from 'react';
 import waterMarkBlack from '../../assets/waterMarkBlack.png'
