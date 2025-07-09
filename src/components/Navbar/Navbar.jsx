@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Icon from '../icons/icon';
 import LanguageSelector from './Languageselector';
+import ThemeSelector from './ThemeSelector';
 
 const NavbarContainer = styled.header`
   position: fixed;
@@ -43,6 +44,12 @@ const BrandName = styled.h1`
   color: var(--PosterfyGreen);
 `;
 
+const RightSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
 const Divider = styled.div`
   position: absolute;
   bottom: 0;
@@ -76,7 +83,10 @@ function Navbar() {
           <Icon fill={'#01b755'} width={'40px'} height={'44.05px'} />
           <BrandName>Posterfy</BrandName>
         </LogoContainer>
-        <LanguageSelector />
+        <RightSection>
+          <ThemeSelector />
+          <LanguageSelector />
+        </RightSection>
       </NavbarContent>
       <Divider $scrolled={scrolled} />
     </NavbarContainer>

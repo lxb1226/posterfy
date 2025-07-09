@@ -3,17 +3,7 @@
 import styled, { keyframes } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import Icon from './icons/icon';
-import {
-  FaGithub,
-  FaHeart,
-  FaPalette,
-  FaMoon,
-  FaSun,
-  FaLeaf,
-  FaFire,
-  FaWater,
-} from 'react-icons/fa';
-import { useEffect, useState } from 'react';
+import { FaGithub, FaHeart } from 'react-icons/fa';
 
 const float = keyframes`
   0% { transform: translateY(0px) rotate(0deg); }
@@ -78,13 +68,13 @@ const Container = styled.div`
 const FooterContent = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 30px;
   padding: 0 20px;
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
     gap: 20px;
   }
 `;
@@ -222,108 +212,7 @@ const CopyrightText = styled.div`
   }
 `;
 
-const ThemeSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  animation: ${slideIn} 0.5s ease-out;
-  animation-delay: 0.2s;
-  opacity: 0;
-  animation-fill-mode: forwards;
-
-  @media (max-width: 768px) {
-    align-items: center;
-  }
-`;
-
-const ThemeTitle = styled.h3`
-  font-size: 1.1em;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 5px;
-  margin-left: 5px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  svg {
-    color: var(--PosterfyGreen);
-  }
-
-  @media (max-width: 480px) {
-    font-size: 1em;
-  }
-`;
-
-const ThemeCards = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  width: 100%;
-  max-width: 400px;
-  justify-content: center;
-`;
-
-const ThemeCard = styled.button`
-  background-color: ${props => props.color};
-  border: none;
-  border-radius: 8px;
-  width: 70px;
-  height: 70px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: ${props =>
-      props.$active
-        ? '2px solid var(--PosterfyGreen)'
-        : '1px solid rgba(255, 255, 255, 0.1)'};
-    border-radius: 8px;
-    box-shadow: ${props =>
-      props.$active ? '0 0 10px var(--PosterfyGreen)' : 'none'};
-    transition: all 0.3s ease;
-  }
-
-  svg {
-    font-size: 1.3em;
-    color: white;
-    margin-bottom: 4px;
-    opacity: 0.9;
-  }
-
-  span {
-    font-size: 0.7em;
-    color: white;
-    opacity: 0.9;
-    font-weight: 500;
-  }
-
-  @media (max-width: 480px) {
-    width: 60px;
-    height: 60px;
-  }
-`;
-
 const SocialSection = styled.div`
-  grid-column: span 2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -334,10 +223,6 @@ const SocialSection = styled.div`
   animation-delay: 0.4s;
   opacity: 0;
   animation-fill-mode: forwards;
-
-  @media (max-width: 768px) {
-    grid-column: span 1;
-  }
 `;
 
 const GithubLink = styled.a`
@@ -375,39 +260,6 @@ const GithubLink = styled.a`
 
 function Footer() {
   const { t } = useTranslation();
-  const [theme, setTheme] = useState('theme-dark');
-
-  useEffect(() => {
-    // 只在客户端执行
-    const savedTheme = localStorage.getItem('theme') || 'theme-dark';
-    setTheme(savedTheme);
-    document.body.className = savedTheme;
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      document.body.className = theme;
-      localStorage.setItem('theme', theme);
-    }
-  }, [theme]);
-
-  const handleThemeChange = newTheme => {
-    setTheme(newTheme);
-  };
-
-  const themes = [
-    { id: 'theme-dark', name: 'Dark', color: '#070815', icon: <FaMoon /> },
-    { id: 'theme-fy', name: 'Midnight', color: '#151515', icon: <FaSun /> },
-    { id: 'theme-rose', name: 'Rose', color: '#232136', icon: <FaLeaf /> },
-    {
-      id: 'theme-carmesin',
-      name: 'Crimson',
-      color: '#1f0c19',
-      icon: <FaFire />,
-    },
-    { id: 'theme-brown', name: 'Earth', color: '#1e1516', icon: <FaWater /> },
-  ];
-
   const currentYear = new Date().getFullYear();
 
   return (
@@ -435,32 +287,6 @@ function Footer() {
             {t('AllRights', 'All rights reserved.')}
           </CopyrightText>
         </CreditsSection>
-
-        <ThemeSection>
-          <ThemeTitle>
-            <FaPalette /> {t('Theme')}
-          </ThemeTitle>
-
-          <ThemeCards>
-            {themes.map(themeOption => (
-              <ThemeCard
-                key={themeOption.id}
-                color={themeOption.color}
-                $active={theme === themeOption.id}
-                onClick={() => handleThemeChange(themeOption.id)}
-                aria-label={`${t('SwitchTo', 'Switch to')} ${themeOption.name} ${t('Theme').toLowerCase()}`}
-              >
-                {themeOption.icon}
-                <span>
-                  {t(
-                    `ThemeName_${themeOption.id.replace('theme-', '')}`,
-                    themeOption.name
-                  )}
-                </span>
-              </ThemeCard>
-            ))}
-          </ThemeCards>
-        </ThemeSection>
 
         <SocialSection>
           <GithubLink
