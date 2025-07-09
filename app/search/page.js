@@ -1,8 +1,9 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
+import Head from 'next/head';
 import Navbar from '../../src/components/Navbar/Navbar.jsx';
 import Anchor from '../../src/components/Anchor.jsx';
 import Grid from '../../src/components/Grid.jsx';
@@ -45,6 +46,61 @@ function SearchContent() {
       router.push('/');
     }
   };
+
+  // Update document title and meta tags for SEO
+  useEffect(() => {
+    if (query) {
+      document.title = `Search: ${query} | Posterfy - Album Poster Generator`;
+
+      // Update meta description
+      const metaDescription = document.querySelector(
+        'meta[name="description"]'
+      );
+      if (metaDescription) {
+        metaDescription.setAttribute(
+          'content',
+          `Search results for "${query}" - Find and create stunning posters for your favorite albums with Posterfy. Powered by Spotify API.`
+        );
+      }
+
+      // Update Open Graph tags
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) {
+        ogTitle.setAttribute('content', `Search: ${query} | Posterfy`);
+      }
+
+      const ogDescription = document.querySelector(
+        'meta[property="og:description"]'
+      );
+      if (ogDescription) {
+        ogDescription.setAttribute(
+          'content',
+          `Search results for "${query}" - Create stunning album posters with Posterfy.`
+        );
+      }
+
+      // Update canonical URL
+      const canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) {
+        canonical.setAttribute(
+          'href',
+          `https://posterfy.vercel.app/search?q=${encodeURIComponent(query)}`
+        );
+      }
+    } else {
+      document.title = 'Search Albums | Posterfy - Album Poster Generator';
+
+      const metaDescription = document.querySelector(
+        'meta[name="description"]'
+      );
+      if (metaDescription) {
+        metaDescription.setAttribute(
+          'content',
+          'Search for your favorite albums and create stunning posters with Posterfy. Powered by Spotify API for instant high-quality results.'
+        );
+      }
+    }
+  }, [query]);
 
   return (
     <>

@@ -1,0 +1,50 @@
+{
+  "name": "Posterfy - Album Poster Generator",
+  "short_name": "Posterfy",
+  "description": "Create beautiful, customizable posters of your favorite albums with Posterfy. Powered by Spotify API.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#191414",
+  "theme_color": "#1DB954",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/ico.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/ico.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["music", "design", "entertainment", "utilities"],
+  "screenshots": [
+    {
+      "src": "/og-image.svg",
+      "sizes": "1200x630",
+      "type": "image/svg+xml",
+      "platform": "wide",
+      "label": "Posterfy main interface"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Search Albums",
+      "short_name": "Search",
+      "description": "Search for albums to create posters",
+      "url": "/search",
+      "icons": [
+        {
+          "src": "/ico.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}
