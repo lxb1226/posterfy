@@ -29,7 +29,7 @@ const DivBack = styled.div`
   flex-direction: row;
   align-items: center;
   width: min-content;
-  margin-top: 25px;
+  margin-top: 100px; /* 增加上边距避免与固定导航栏重叠 */
   cursor: pointer;
 `;
 
@@ -50,6 +50,7 @@ const ContainerEditor = styled.div`
   margin-top: 15px;
   display: flex;
   flex-direction: row;
+  align-items: flex-start; /* 确保左侧图片和右侧面板顶部对齐 */
 
   @media (max-width: 1300px) {
     flex-direction: column;
