@@ -55,7 +55,7 @@ export default function EditorPage() {
       if (canonical) {
         canonical.setAttribute(
           'href',
-          `https://posterfy.vercel.app/editor/${albumId}`
+          `https://www.posterfy.art/editor/${albumId}`
         );
       }
     } else {

@@ -84,7 +84,7 @@ function SearchContent() {
       if (canonical) {
         canonical.setAttribute(
           'href',
-          `https://posterfy.vercel.app/search?q=${encodeURIComponent(query)}`
+          `https://www.posterfy.art/search?q=${encodeURIComponent(query)}`
         );
       }
     } else {

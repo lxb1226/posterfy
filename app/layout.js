@@ -40,11 +40,11 @@ export default function RootLayout({ children }) {
           property='og:description'
           content='Create beautiful, customizable posters of your favorite albums with Posterfy. Powered by Spotify API for instant high-quality results.'
         />
-        <meta property='og:url' content='https://posterfy.vercel.app/' />
+        <meta property='og:url' content='https://www.posterfy.art/' />
         <meta property='og:site_name' content='Posterfy' />
         <meta
           property='og:image'
-          content='https://posterfy.vercel.app/og-image.png'
+          content='https://www.posterfy.art/og-image.svg'
         />
         <meta property='og:image:width' content='1200' />
         <meta property='og:image:height' content='630' />
@@ -66,7 +66,7 @@ export default function RootLayout({ children }) {
         />
         <meta
           name='twitter:image'
-          content='https://posterfy.vercel.app/og-image.png'
+          content='https://www.posterfy.art/og-image.svg'
         />
         <meta
           name='twitter:image:alt'
@@ -94,7 +94,7 @@ export default function RootLayout({ children }) {
         <meta name='msapplication-config' content='/browserconfig.xml' />
 
         {/* Canonical URL */}
-        <link rel='canonical' href='https://posterfy.vercel.app/' />
+        <link rel='canonical' href='https://www.posterfy.art/' />
 
         {/* Preconnect for Performance */}
         <link rel='preconnect' href='https://fonts.googleapis.com' />
@@ -116,7 +116,7 @@ export default function RootLayout({ children }) {
               name: 'Posterfy',
               description:
                 'Create beautiful, customizable posters of your favorite albums with Posterfy. Powered by Spotify API.',
-              url: 'https://posterfy.vercel.app/',
+              url: 'https://www.posterfy.art/',
               applicationCategory: 'DesignApplication',
               operatingSystem: 'Web Browser',
               offers: {
