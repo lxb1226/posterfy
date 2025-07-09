@@ -2,37 +2,25 @@
 import styled from 'styled-components';
 
 const Anch1 = styled.h2`
-    font-size: 2em;
-    width: 80%;
-    font-weight: bolder;
-    color: var(--PosterfyGreen);
-    margin-inline: auto;
+  font-size: 2em;
+  width: 80%;
+  font-weight: bolder;
+  color: var(--PosterfyGreen);
+  margin-inline: auto;
 `;
 
 const Anch2 = styled.h3`
-    font-size: 1.35em;
-    opacity: .5;
-    font-weight: bolder;
-    color: white;
-    width: 80%;
-    margin-inline: auto;
-    margin-block: 10px;
+  font-size: 1.35em;
+  opacity: 0.5;
+  font-weight: bolder;
+  color: white;
+  width: 80%;
+  margin-inline: auto;
+  margin-block: 10px;
 `;
 
 function Anchor({ text, type }) {
-    return (
-        <>
-            {type == 1 ? (
-                    <Anch1>
-                        {text}
-                    </Anch1>
-            ) : (
-                <Anch2>
-                    {text}
-                </Anch2>
-            )}
-        </>
-    );
+  return <>{type === 1 ? <Anch1>{text}</Anch1> : <Anch2>{text}</Anch2>}</>;
 }
 
 export default Anchor;

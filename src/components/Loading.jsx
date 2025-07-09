@@ -8,26 +8,26 @@ const pulse = keyframes`
 `;
 
 const Container = styled.div`
-    background-color: var(--backgroundColor);
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: var(--backgroundColor);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const PulsingWrapper = styled.div`
-    animation: ${pulse} 1.2s infinite;
+  animation: ${pulse} 1.2s infinite;
 `;
 
 function Loading() {
-    return (
-        <Container>
-            <PulsingWrapper>
-                <Icon fill="white" width="180px" height={'198.23px'} />
-            </PulsingWrapper>
-        </Container>
-    );
+  return (
+    <Container>
+      <PulsingWrapper>
+        <Icon fill='white' width='180px' height={'198.23px'} />
+      </PulsingWrapper>
+    </Container>
+  );
 }
 
 export default Loading;

@@ -7,7 +7,6 @@
   --backgroundColor: #070815;
 }
 
-
 .theme-rose {
   --backgroundColor: #232136;
 }
@@ -24,12 +23,14 @@
   --backgroundColor: #1e1516;
 }
 
-*{
+* {
   font-family: montserrat, sans-serif;
   margin: 0;
   padding: 0;
   color: white;
-  transition: color 0.5s, background-color 0.5s;
+  transition:
+    color 0.5s,
+    background-color 0.5s;
 }
 
 body {

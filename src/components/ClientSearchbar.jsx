@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import { useRouter } from 'next/navigation'
-import Searchbar from './Searchbar.jsx'
+import { useRouter } from 'next/navigation';
+import Searchbar from './Searchbar.jsx';
 
 export default function ClientSearchbar({ defaultValue = '' }) {
-  const router = useRouter()
+  const router = useRouter();
 
-  const onSearch = (query) => {
+  const onSearch = query => {
     if (query.trim()) {
-      router.push(`/search?q=${encodeURIComponent(query)}`)
+      router.push(`/search?q=${encodeURIComponent(query)}`);
     }
-  }
+  };
 
-  return <Searchbar onSearch={onSearch} defaultValue={defaultValue} />
+  return <Searchbar onSearch={onSearch} defaultValue={defaultValue} />;
 }

@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from "react"
-import styled from "styled-components"
-import Image from "next/image"
-import { albumData } from "./albumData"
+import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import Image from 'next/image';
+import { albumData } from './albumData';
 
 const AlbumsContainer = styled.div`
   display: flex;
@@ -14,45 +14,57 @@ const AlbumsContainer = styled.div`
   perspective: 1000px;
   padding: 20px 0;
   overflow: hidden;
-`
+`;
 
 const AlbumPoster = styled.div`
   position: relative;
-  width: ${(props) =>
+  width: ${props =>
     props.$index === 2
-      ? "329px"
+      ? '329px'
       : props.$index === 1 || props.$index === 3
-      ? "288px"
-      : "249px"};
-  height: ${(props) =>
+        ? '288px'
+        : '249px'};
+  height: ${props =>
     props.$index === 2
-      ? "465px"
+      ? '465px'
       : props.$index === 1 || props.$index === 3
-      ? "405px"
-      : "345px"};
+        ? '405px'
+        : '345px'};
   margin: 0 -30px;
   transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  z-index: ${(props) => {
-    if (props.$isHovered) return 11;
-    if (props.$index === 2) return 10;
-    if (props.$index === 3) return 9;
-    if (props.$index === 4) return 8;
+  z-index: ${props => {
+    if (props.$isHovered) {
+      return 11;
+    }
+    if (props.$index === 2) {
+      return 10;
+    }
+    if (props.$index === 3) {
+      return 9;
+    }
+    if (props.$index === 4) {
+      return 8;
+    }
     return 5;
   }};
-  transform: ${(props) =>
+  transform: ${props =>
     props.$isHovered
-      ? "scale(1.1)"
+      ? 'scale(1.1)'
       : props.$isMobile
-      ? "scale(1)"
-      : `scale(0.95)`};
-  box-shadow: ${(props) =>
+        ? 'scale(1)'
+        : `scale(0.95)`};
+  box-shadow: ${props =>
     props.$isHovered
-      ? "0 15px 30px rgba(0,0,0,0.4)"
-      : "0 5px 10px rgba(0,0,0,0.2)"};
-  display: ${(props) => {
-    if (props.$isMobile && props.$index !== 2) return "none";
-    if (props.$isTablet && (props.$index < 1 || props.$index > 3)) return "none";
-    return "block";
+      ? '0 15px 30px rgba(0,0,0,0.4)'
+      : '0 5px 10px rgba(0,0,0,0.2)'};
+  display: ${props => {
+    if (props.$isMobile && props.$index !== 2) {
+      return 'none';
+    }
+    if (props.$isTablet && (props.$index < 1 || props.$index > 3)) {
+      return 'none';
+    }
+    return 'block';
   }};
 
   &:hover {
@@ -63,21 +75,21 @@ const AlbumPoster = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: ${(props) =>
+    filter: ${props =>
       props.$isHovered
-        ? "brightness(1.1) contrast(1.05)"
-        : "brightness(1) contrast(1)"};
+        ? 'brightness(1.1) contrast(1.05)'
+        : 'brightness(1) contrast(1)'};
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
-    opacity: ${(props) => (props.$otherIsHovered && !props.$isHovered ? 1 : 0)};
+    opacity: ${props => (props.$otherIsHovered && !props.$isHovered ? 1 : 0)};
     transition: opacity 0.3s ease;
     pointer-events: none;
   }
@@ -87,21 +99,21 @@ const AlbumPoster = styled.div`
   }
 
   @media (max-width: 480px) {
-    width: ${(props) =>
+    width: ${props =>
       props.$index === 2
-        ? "260px"
+        ? '260px'
         : props.$index === 1 || props.$index === 3
-        ? "220px"
-        : "180px"};
-    height: ${(props) =>
+          ? '220px'
+          : '180px'};
+    height: ${props =>
       props.$index === 2
-        ? "390px"
+        ? '390px'
         : props.$index === 1 || props.$index === 3
-        ? "330px"
-        : "270px"};
+          ? '330px'
+          : '270px'};
     margin: 0;
   }
-`
+`;
 
 const Modal = styled.div`
   position: fixed;
@@ -115,7 +127,7 @@ const Modal = styled.div`
   align-items: center;
   z-index: 1000;
   backdrop-filter: blur(10px);
-`
+`;
 
 const ModalContent = styled.div`
   position: relative;
@@ -130,7 +142,7 @@ const ModalContent = styled.div`
     max-height: 70%;
     object-fit: contain;
   }
-`
+`;
 
 const CloseButton = styled.button`
   position: absolute;
@@ -145,45 +157,48 @@ const CloseButton = styled.button`
   &:hover {
     color: #ccc;
   }
-`
+`;
 
 const AlbumCollection = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null)
-  const [isMobile, setIsMobile] = useState(false)
-  const [isTablet, setIsTablet] = useState(false)
-  const [modalImage, setModalImage] = useState(null)
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+  const [modalImage, setModalImage] = useState(null);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 770)
-      setIsTablet(window.innerWidth > 480 && window.innerWidth <= 1200)
-    }
+      setIsMobile(window.innerWidth <= 770);
+      setIsTablet(window.innerWidth > 480 && window.innerWidth <= 1200);
+    };
 
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-  const openModal = (image) => {
+  const openModal = image => {
     // 调试日志：记录传入的图片参数
     console.log('AlbumCollection openModal called with:', {
       image,
       type: typeof image,
-      isString: typeof image === 'string'
-    })
-    
+      isString: typeof image === 'string',
+    });
+
     // 确保image是字符串URL，如果是对象则转换为字符串
-    const imageUrl = typeof image === 'string' ? image : (image?.src || image?.default || String(image))
-    
-    console.log('Setting modal image to:', imageUrl)
-    setModalImage(imageUrl)
-    document.body.style.overflow = "hidden"
-  }
+    const imageUrl =
+      typeof image === 'string'
+        ? image
+        : image?.src || image?.default || String(image);
+
+    console.log('Setting modal image to:', imageUrl);
+    setModalImage(imageUrl);
+    document.body.style.overflow = 'hidden';
+  };
 
   const closeModal = () => {
-    setModalImage(null)
-    document.body.style.overflow = "auto"
-  }
+    setModalImage(null);
+    document.body.style.overflow = 'auto';
+  };
 
   return (
     <>
@@ -205,14 +220,20 @@ const AlbumCollection = () => {
                 coverImage: album.coverImage,
                 coverImageType: typeof album.coverImage,
                 id: album.id,
-                idType: typeof album.id
-              })
-              
-              openModal(album.coverImage || "/placeholder.svg")
+                idType: typeof album.id,
+              });
+
+              openModal(album.coverImage || '/placeholder.svg');
             }}
           >
-            <Image 
-              src={typeof album.coverImage === 'string' ? album.coverImage : (album.coverImage?.src || album.coverImage?.default || "/placeholder.svg")} 
+            <Image
+              src={
+                typeof album.coverImage === 'string'
+                  ? album.coverImage
+                  : album.coverImage?.src ||
+                    album.coverImage?.default ||
+                    '/placeholder.svg'
+              }
               alt={`${album.artist} - ${album.title}`}
               fill
               style={{ objectFit: 'cover' }}
@@ -223,20 +244,24 @@ const AlbumCollection = () => {
 
       {modalImage && (
         <Modal onClick={closeModal}>
-          <ModalContent onClick={(e) => e.stopPropagation()}>
+          <ModalContent onClick={e => e.stopPropagation()}>
             <CloseButton onClick={closeModal}>&times;</CloseButton>
-            <Image 
-              src={modalImage} 
-              alt="Album cover" 
+            <Image
+              src={modalImage}
+              alt='Album cover'
               width={800}
               height={800}
-              style={{ maxWidth: '70%', maxHeight: '70%', objectFit: 'contain' }}
+              style={{
+                maxWidth: '70%',
+                maxHeight: '70%',
+                objectFit: 'contain',
+              }}
             />
           </ModalContent>
         </Modal>
       )}
     </>
-  )
-}
+  );
+};
 
-export default AlbumCollection
+export default AlbumCollection;
