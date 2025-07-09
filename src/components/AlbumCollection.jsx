@@ -164,7 +164,18 @@ const AlbumCollection = () => {
   }, [])
 
   const openModal = (image) => {
-    setModalImage(image)
+    // 调试日志：记录传入的图片参数
+    console.log('AlbumCollection openModal called with:', {
+      image,
+      type: typeof image,
+      isString: typeof image === 'string'
+    })
+    
+    // 确保image是字符串URL，如果是对象则转换为字符串
+    const imageUrl = typeof image === 'string' ? image : (image?.src || image?.default || String(image))
+    
+    console.log('Setting modal image to:', imageUrl)
+    setModalImage(imageUrl)
     document.body.style.overflow = "hidden"
   }
 
@@ -186,9 +197,23 @@ const AlbumCollection = () => {
             $isTablet={isTablet}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
-            onClick={() => openModal(album.coverImage || "/placeholder.svg")}
+            onClick={() => {
+              // 调试日志：记录点击的专辑数据
+              console.log('AlbumPoster clicked:', {
+                album,
+                coverImage: album.coverImage,
+                coverImageType: typeof album.coverImage,
+                id: album.id,
+                idType: typeof album.id
+              })
+              
+              openModal(album.coverImage || "/placeholder.svg")
+            }}
           >
-            <img src={album.coverImage || "/placeholder.svg"} alt={`${album.artist} - ${album.title}`} />
+            <img 
+              src={typeof album.coverImage === 'string' ? album.coverImage : (album.coverImage?.src || album.coverImage?.default || "/placeholder.svg")} 
+              alt={`${album.artist} - ${album.title}`} 
+            />
           </AlbumPoster>
         ))}
       </AlbumsContainer>

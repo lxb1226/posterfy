@@ -72,12 +72,31 @@ function Grid({ query, onclick }) {
                 }
                 const data = await response.json();
                 const albumsData = (query ? data.albums.items : data.albums.items).filter(album => album !== null && album !== undefined);
-                setAlbums(albumsData.map(album => ({
-                    id: album.id,
-                    title: album.name,
-                    artist: album.artists[0]?.name,
-                    cover: album.images[0]?.url
-                })));
+                
+                // 调试日志：记录从API获取的原始数据
+                console.log('Raw albums data from Spotify API:', albumsData.slice(0, 3)) // 只显示前3个避免日志过多
+                
+                const mappedAlbums = albumsData.map(album => {
+                    const mappedAlbum = {
+                        id: album.id,
+                        title: album.name,
+                        artist: album.artists[0]?.name,
+                        cover: album.images[0]?.url
+                    }
+                    
+                    // 调试日志：记录映射后的专辑数据
+                    console.log('Mapped album:', {
+                        originalId: album.id,
+                        originalIdType: typeof album.id,
+                        mappedId: mappedAlbum.id,
+                        mappedIdType: typeof mappedAlbum.id,
+                        title: mappedAlbum.title
+                    })
+                    
+                    return mappedAlbum
+                })
+                
+                setAlbums(mappedAlbums);
             } catch (err) {
                 console.error(err);
             }

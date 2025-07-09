@@ -1,5 +1,5 @@
 import IMG1 from "../assets/albunsHero/Posterfy - KTT ZOO.png"
-import IMG2 from "../assets/albunsHero/Posterfy - STARBOY.png"
+import IMG2 from "../assets/albunsHero/Posterfy - Starboy.png"
 import IMG3 from "../assets/albunsHero/Posterfy - CHROMAKOPIA.png"
 import IMG4 from "../assets/albunsHero/Posterfy - ZIMA.png"
 import IMG5 from "../assets/albunsHero/Posterfy - Sobrevivendo no inferno.png"

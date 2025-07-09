@@ -52,8 +52,23 @@ const Artist = styled.p`
 `
 
 function Album({ title, artist, cover, id, onClick }) {
+    const handleClick = () => {
+        // 调试日志：记录Album组件的点击事件
+        console.log('Album clicked:', {
+            id,
+            type: typeof id,
+            title,
+            artist,
+            hasOnClick: typeof onClick === 'function'
+        })
+        
+        if (onClick) {
+            onClick(id)
+        }
+    }
+    
     return (
-        <Container onClick={() => onClick(id)}>
+        <Container onClick={handleClick}>
             <Cover src={cover} />
             <Title>{title}</Title>
             <Artist>{artist}</Artist>
