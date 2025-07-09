@@ -20,13 +20,20 @@ function SearchContent() {
     console.log('SearchPage onClickAlbum called with:', {
       id,
       type: typeof id,
-      isString: typeof id === 'string',
       stringified: String(id),
+      isObject: typeof id === 'object',
+      objectKeys: typeof id === 'object' ? Object.keys(id) : null,
     });
 
-    // 确保id是字符串，防止传递对象导致[object Object]错误
-    const albumId = typeof id === 'string' ? id : String(id);
+    // 检查是否传入了对象而不是ID
+    if (typeof id === 'object' && id !== null) {
+      console.error('❌ ERROR: Object passed instead of ID:', id);
+      console.error('❌ This will cause [object Object] in URL');
+      return; // 阻止导航
+    }
 
+    // 确保id是字符串，防止传递对象导致[object Object]错误
+    const albumId = String(id);
     console.log('Navigating to:', `/editor/${albumId}`);
     router.push(`/editor/${albumId}`);
   }

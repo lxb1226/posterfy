@@ -60,7 +60,20 @@ function Album({ title, artist, cover, id, onClick }) {
       title,
       artist,
       hasOnClick: typeof onClick === 'function',
+      isValidId: typeof id === 'string' && id.length > 0,
+      stringified: String(id),
     });
+
+    // 验证 ID 是否有效
+    if (typeof id !== 'string' || id.length === 0) {
+      console.error('❌ Album component: Invalid ID detected:', {
+        id,
+        type: typeof id,
+        title,
+        artist,
+      });
+      return; // 阻止点击事件
+    }
 
     if (onClick) {
       onClick(id);

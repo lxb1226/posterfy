@@ -108,7 +108,17 @@ function Grid({ query, onclick }) {
             mappedId: mappedAlbum.id,
             mappedIdType: typeof mappedAlbum.id,
             title: mappedAlbum.title,
+            isValidId:
+              typeof mappedAlbum.id === 'string' && mappedAlbum.id.length > 0,
           });
+
+          // 验证 ID 是否有效
+          if (
+            typeof mappedAlbum.id !== 'string' ||
+            mappedAlbum.id.length === 0
+          ) {
+            console.error('❌ Invalid album ID detected:', mappedAlbum);
+          }
 
           return mappedAlbum;
         });

@@ -1,9 +1,21 @@
 'use client';
 
 /* eslint-disable react/prop-types */
-import { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import waterMarkBlack from '../../assets/waterMarkBlack.png';
 import waterMarkWhite from '../../assets/waterMarkWhite.png';
+
+// 🔍 调试图片导入
+console.log(
+  '🚀 Module loaded - waterMarkBlack:',
+  waterMarkBlack,
+  typeof waterMarkBlack
+);
+console.log(
+  '🚀 Module loaded - waterMarkWhite:',
+  waterMarkWhite,
+  typeof waterMarkWhite
+);
 
 const CanvasPoster = ({
   onImageReady,
@@ -29,30 +41,66 @@ const CanvasPoster = ({
       posterData.marginCover = parseInt(posterData.marginCover) || 0;
 
       const loadCover = async url => {
+        console.log('🖼️ loadCover called with URL:', url);
+
+        if (!url) {
+          console.warn('⚠️ No album cover URL provided');
+          return;
+        }
+
         const image = new Image();
         image.crossOrigin = 'anonymous';
+        console.log('🔄 Setting image src:', url);
         image.src = url;
-        return new Promise(resolve => {
+        return new Promise((resolve, reject) => {
           image.onload = () => {
-            ctx.drawImage(
-              image,
-              posterData.marginCover,
-              posterData.marginCover,
-              width - posterData.marginCover * 2,
-              width - posterData.marginCover * 2
-            );
-            if (posterData.useFade) {
-              const verticalFade = ctx.createLinearGradient(0, 0, 0, 3000);
-              const rgb = hexToRgb(posterData.backgroundColor);
-              verticalFade.addColorStop(
-                0.5,
-                `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0)`
+            console.log('✅ Image loaded successfully:', {
+              width: image.width,
+              height: image.height,
+              src: image.src,
+            });
+
+            try {
+              console.log('🎯 Drawing image with dimensions:', {
+                x: posterData.marginCover,
+                y: posterData.marginCover,
+                width: width - posterData.marginCover * 2,
+                height: width - posterData.marginCover * 2,
+              });
+
+              ctx.drawImage(
+                image,
+                posterData.marginCover,
+                posterData.marginCover,
+                width - posterData.marginCover * 2,
+                width - posterData.marginCover * 2
               );
-              verticalFade.addColorStop(0.8, posterData.backgroundColor);
-              ctx.fillStyle = verticalFade;
-              ctx.fillRect(0, 0, canvas.width, 2500);
+
+              console.log('🎨 Image drawn successfully to canvas');
+
+              if (posterData.useFade) {
+                console.log('🌅 Applying fade effect');
+                const verticalFade = ctx.createLinearGradient(0, 0, 0, 3000);
+                const rgb = hexToRgb(posterData.backgroundColor);
+                verticalFade.addColorStop(
+                  0.5,
+                  `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0)`
+                );
+                verticalFade.addColorStop(0.8, posterData.backgroundColor);
+                ctx.fillStyle = verticalFade;
+                ctx.fillRect(0, 0, canvas.width, 2500);
+                console.log('✨ Fade effect applied');
+              }
+              resolve();
+            } catch (error) {
+              console.error('❌ Error drawing album cover:', error);
+              resolve(); // Continue without cover
             }
-            resolve();
+          };
+
+          image.onerror = error => {
+            console.error('❌ Failed to load album cover:', url, error);
+            resolve(); // Continue without cover instead of blocking
           };
         });
       };
@@ -62,7 +110,19 @@ const CanvasPoster = ({
         image.crossOrigin = 'anonymous';
         const rgb = hexToRgb(posterData.backgroundColor);
         const contrastColor = getContrast(rgb);
-        image.src = contrastColor === 'black' ? waterMarkBlack : waterMarkWhite;
+
+        // 🔍 调试水印图片导入
+        console.log('🖼️ waterMarkBlack:', waterMarkBlack);
+        console.log('🖼️ waterMarkWhite:', waterMarkWhite);
+        console.log('🎨 contrastColor:', contrastColor);
+
+        image.src =
+          contrastColor === 'black' ? waterMarkBlack.src : waterMarkWhite.src;
+        console.log('🔗 Final image src:', image.src);
+        console.log(
+          '📍 Current window.location:',
+          typeof window !== 'undefined' ? window.location.href : 'SSR'
+        );
         return new Promise(resolve => {
           image.onload = () => {
             ctx.globalAlpha = '0.15';
@@ -264,10 +324,28 @@ const CanvasPoster = ({
       };
 
       await drawBackground();
-      if (posterData.useUncompressed) {
-        await loadCover(await posterData.uncompressedAlbumCover);
-      } else {
-        await loadCover(posterData.albumCover);
+
+      console.log('🎨 CanvasPoster received posterData:', {
+        albumCover: posterData.albumCover,
+        uncompressedAlbumCover: posterData.uncompressedAlbumCover,
+        useUncompressed: posterData.useUncompressed,
+      });
+
+      try {
+        if (posterData.useUncompressed && posterData.uncompressedAlbumCover) {
+          console.log(
+            '🔄 Loading uncompressed album cover:',
+            await posterData.uncompressedAlbumCover
+          );
+          await loadCover(await posterData.uncompressedAlbumCover);
+        } else if (posterData.albumCover) {
+          console.log('🔄 Loading regular album cover:', posterData.albumCover);
+          await loadCover(posterData.albumCover);
+        } else {
+          console.warn('⚠️ No album cover available to load');
+        }
+      } catch (error) {
+        console.error('❌ Error loading album cover:', error);
       }
 
       await drawAlbumInfos();

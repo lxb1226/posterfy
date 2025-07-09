@@ -259,8 +259,9 @@ const ShortcutsInfo = styled.p`
     margin-bottom: 10px;
   }
 `;
+export default function PosterEditor({ albumID, handleClickBack }) {
+  console.log('🎨 PosterEditor received albumID:', albumID, typeof albumID);
 
-function PosterEditor({ albumID, handleClickBack }) {
   const { t } = useTranslation();
   const previewRef = useRef(null);
 
@@ -364,6 +365,13 @@ function PosterEditor({ albumID, handleClickBack }) {
     userAdjustedTitleSize,
     initialTitleSizeSet,
   };
+
+  console.log('📦 PosterData created:', {
+    albumCover: posterData.albumCover,
+    uncompressedAlbumCover: posterData.uncompressedAlbumCover,
+    useUncompressed: posterData.useUncompressed,
+    albumName: posterData.albumName,
+  });
 
   const [image, setImage] = useState(null);
   const [generatePoster, setGeneratePoster] = useState(false);
@@ -488,9 +496,21 @@ function PosterEditor({ albumID, handleClickBack }) {
 
   useEffect(() => {
     const fetchAlbumData = async () => {
+      console.log('🎵 fetchAlbumData called with albumID:', albumID);
+
       try {
-        const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-        const clientSecret = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
+        const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
+        const clientSecret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET;
+
+        console.log('🔑 Environment variables:', {
+          clientId: clientId ? '✅ Set' : '❌ Missing',
+          clientSecret: clientSecret ? '✅ Set' : '❌ Missing',
+        });
+
+        if (!clientId || !clientSecret) {
+          console.error('❌ Spotify API credentials not found');
+          return;
+        }
 
         const tokenResponse = await fetch(
           'https://accounts.spotify.com/api/token',
@@ -519,12 +539,18 @@ function PosterEditor({ albumID, handleClickBack }) {
         );
 
         const albumData = await albumResponse.json();
+        console.log('🎵 Album data received:', albumData);
+        console.log('🖼️ Album images:', albumData.images);
+
+        const albumCoverUrl = albumData.images[0]?.url;
+        console.log('📸 Setting album cover URL:', albumCoverUrl);
+
         const formattedArtistsName = albumData.artists
           .map(artist => artist.name)
           .join(', ');
         setAlbumName(albumData.name);
         setArtistsName(formattedArtistsName);
-        setAlbumCover(albumData.images[0]?.url);
+        setAlbumCover(albumCoverUrl);
         setReleaseDate(albumData.release_date);
         setUncompressedAlbumCover(
           await getItunesUncompressedAlbumCover(
@@ -843,5 +869,3 @@ function PosterEditor({ albumID, handleClickBack }) {
     </>
   );
 }
-
-export default PosterEditor;
