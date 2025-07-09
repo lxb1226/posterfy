@@ -19,7 +19,7 @@ const QuestionDiv = styled.div`
 const Arrow = styled(IoIosArrowForward)`
     font-size: 2em;
     transition: transform 0.3s ease;
-    transform: ${({ showA }) => (showA ? 'rotate(90deg)' : 'rotate(0deg)')};
+    transform: ${({ $showA }) => ($showA ? 'rotate(90deg)' : 'rotate(0deg)')};
 `
 
 const Q = styled.h2`
@@ -34,7 +34,7 @@ const Hr = styled.hr`
 `
 
 const AnswerDiv = styled.div`
-    max-height: ${({ showA }) => (showA ? '1000px' : '0')};
+    max-height: ${({ $showA }) => ($showA ? '1000px' : '0')};
     overflow: hidden;
     transition: max-height 0.5s ease;
 `
@@ -57,14 +57,14 @@ function Question({ q, a }){
     return(
         <>
             <QuestionDiv onClick={handleShowA}>
-                <Arrow showA={showA} />
+                <Arrow $showA={showA} />
                 <Q>
                     {q}
                 </Q>
             </QuestionDiv>
             <Hr/>
-            <AnswerDiv showA={showA}>
-                <A showA={showA}>
+            <AnswerDiv $showA={showA}>
+                <A>
                     {a}
                 </A>
             </AnswerDiv>

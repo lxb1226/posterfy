@@ -12,10 +12,10 @@ const NavbarContainer = styled.header`
   width: 100%;
   z-index: 50;
   transition: all 0.3s ease;
-  background-color: ${({ scrolled }) => (scrolled ? "rgba(0, 0, 0, 0.2)" : "transparent")};
-  backdrop-filter: ${({ scrolled }) => (scrolled ? "blur(10px)" : "none")};
-  padding: ${({ scrolled }) => (scrolled ? "12px 0" : "20px 0")};
-  box-shadow: ${({ scrolled }) => (scrolled ? "0 4px 30px rgba(0, 0, 0, 0.1)" : "none")};
+  background-color: ${({ $scrolled }) => ($scrolled ? "rgba(0, 0, 0, 0.2)" : "transparent")};
+  backdrop-filter: ${({ $scrolled }) => ($scrolled ? "blur(10px)" : "none")};
+  padding: ${({ $scrolled }) => ($scrolled ? "12px 0" : "20px 0")};
+  box-shadow: ${({ $scrolled }) => ($scrolled ? "0 4px 30px rgba(0, 0, 0, 0.1)" : "none")};
 `
 
 const NavbarContent = styled.div`
@@ -48,7 +48,7 @@ const Divider = styled.div`
   width: 100%;
   height: 1px;
   background-color: rgba(0, 255, 0, 0.1);
-  opacity: ${({ scrolled }) => (scrolled ? "1" : "0")};
+  opacity: ${({ $scrolled }) => ($scrolled ? "1" : "0")};
   transition: opacity 0.3s ease;
 `
 
@@ -68,7 +68,7 @@ function Navbar() {
   }, [scrolled])
 
   return (
-    <NavbarContainer scrolled={scrolled}>
+    <NavbarContainer $scrolled={scrolled}>
       <NavbarContent>
         <LogoContainer>
           <Icon fill={"#01b755"} width={"40px"} height={"44.05px"} />
@@ -76,7 +76,7 @@ function Navbar() {
         </LogoContainer>
         <LanguageSelector />
       </NavbarContent>
-      <Divider scrolled={scrolled} />
+      <Divider $scrolled={scrolled} />
     </NavbarContainer>
   )
 }
