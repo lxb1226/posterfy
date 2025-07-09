@@ -166,6 +166,7 @@ function ColorSelector({ DefaultColor, image, predefinedColors, position, onDone
                     crossOrigin="anonymous"
                     draggable="false"
                     src={image}
+                    alt="Color picker reference image"
                     onClick={handleImageClick}
                     onLoad={() => {
                         const canvas = canvasRef.current;

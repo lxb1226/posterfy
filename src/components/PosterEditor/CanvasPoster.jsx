@@ -218,7 +218,7 @@ const CanvasPoster = ({ onImageReady, posterData, generatePoster, onTitleSizeAdj
         };
 
         generatePosterContent();
-    }, [generatePoster, posterData, onImageReady]);
+    }, [generatePoster, posterData, onImageReady, customFont, onTitleSizeAdjust]);
 
     return <canvas ref={canvasRef} width={2480} height={3508} style={{ display: 'none' }} />;
 };

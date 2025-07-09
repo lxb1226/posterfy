@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import styled from "styled-components"
+import Image from "next/image"
 import { albumData } from "./albumData"
 
 const AlbumsContainer = styled.div`
@@ -210,9 +211,11 @@ const AlbumCollection = () => {
               openModal(album.coverImage || "/placeholder.svg")
             }}
           >
-            <img 
+            <Image 
               src={typeof album.coverImage === 'string' ? album.coverImage : (album.coverImage?.src || album.coverImage?.default || "/placeholder.svg")} 
-              alt={`${album.artist} - ${album.title}`} 
+              alt={`${album.artist} - ${album.title}`}
+              fill
+              style={{ objectFit: 'cover' }}
             />
           </AlbumPoster>
         ))}
@@ -222,7 +225,13 @@ const AlbumCollection = () => {
         <Modal onClick={closeModal}>
           <ModalContent onClick={(e) => e.stopPropagation()}>
             <CloseButton onClick={closeModal}>&times;</CloseButton>
-            <img src={modalImage} alt="Album cover" />
+            <Image 
+              src={modalImage} 
+              alt="Album cover" 
+              width={800}
+              height={800}
+              style={{ maxWidth: '70%', maxHeight: '70%', objectFit: 'contain' }}
+            />
           </ModalContent>
         </Modal>
       )}

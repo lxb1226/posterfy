@@ -7,7 +7,7 @@ import { IoArrowBack } from "react-icons/io5";
 import NormalInput from "./inputs/NormalInput";
 import DoubleInput from "./inputs/DoubleInput";
 import ColorInput from "./inputs/ColorInput";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useTranslation } from 'react-i18next';
 import ColorSelector from "./ColorSelector";
 import CheckInput from "./inputs/CheckInput";
@@ -395,13 +395,13 @@ function PosterEditor({ albumID, handleClickBack }) {
         setFileName(file.name);
     };
 
-    const handleDownloadClick = () => {
+    const handleDownloadClick = useCallback(() => {
         if (!image) return;
         const link = document.createElement('a');
         link.href = image;
         link.download = `Posterfy - ${albumName}.png`;
         link.click();
-    };
+    }, [image, albumName]);
     
     const handleCoverDownloadClick = async () => {
         if (useUncompressed) {

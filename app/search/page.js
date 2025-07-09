@@ -1,5 +1,6 @@
 'use client'
 
+import { Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import Navbar from '../../src/components/Navbar/Navbar.jsx'
@@ -8,7 +9,7 @@ import Grid from '../../src/components/Grid.jsx'
 import Footer from '../../src/components/Footer.jsx'
 import Searchbar from '../../src/components/Searchbar.jsx'
 
-export default function SearchPage() {
+function SearchContent() {
   const { t } = useTranslation()
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -55,5 +56,13 @@ export default function SearchPage() {
       </div>
       <Footer />
     </>
+  )
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchContent />
+    </Suspense>
   )
 }
