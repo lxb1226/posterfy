@@ -1,118 +1,77 @@
-'use client';
-
 import { Inter } from 'next/font/google';
 import StyledComponentsRegistry from './lib/registry';
+import ClientProviders from './components/ClientProviders';
 import '../src/index.css';
-import '../src/i18n/i18n';
 
 const inter = Inter({ subsets: ['latin'] });
+
+export const metadata = {
+  title: 'Posterfy - Create Stunning Album Posters | Spotify Powered',
+  description:
+    'Create beautiful, customizable posters of your favorite albums with Posterfy. Powered by Spotify API, generate high-quality album artwork posters instantly. Free online poster maker for music lovers.',
+  keywords:
+    'album poster, spotify, music poster, album art, poster maker, music artwork, album cover, poster generator, spotify poster, music design',
+  authors: [{ name: 'Posterfy Team' }],
+  robots: 'index, follow',
+  viewport: 'width=device-width, initial-scale=1.0',
+  themeColor: '#1DB954',
+  openGraph: {
+    type: 'website',
+    title: 'Posterfy - Create Stunning Album Posters',
+    description:
+      'Create beautiful, customizable posters of your favorite albums with Posterfy. Powered by Spotify API for instant high-quality results.',
+    url: 'https://www.posterfy.art/',
+    siteName: 'Posterfy',
+    images: [
+      {
+        url: 'https://www.posterfy.art/og-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Posterfy - Album Poster Generator',
+      },
+    ],
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Posterfy - Create Stunning Album Posters',
+    description:
+      'Create beautiful, customizable posters of your favorite albums with Posterfy. Powered by Spotify API.',
+    images: ['https://www.posterfy.art/og-image.svg'],
+    creator: '@posterfy',
+    site: '@posterfy',
+  },
+  icons: {
+    icon: '/ico.png',
+    apple: '/ico.png',
+    shortcut: '/ico.png',
+  },
+  manifest: '/manifest.json',
+  alternates: {
+    canonical: 'https://www.posterfy.art/',
+    languages: {
+      en: 'https://www.posterfy.art/',
+      pt: 'https://www.posterfy.art/?lang=pt',
+      es: 'https://www.posterfy.art/?lang=es',
+      'x-default': 'https://www.posterfy.art/',
+    },
+  },
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <head>
-        {/* Basic Meta Tags */}
-        <title>
-          Posterfy - Create Stunning Album Posters | Spotify Powered
-        </title>
-        <meta
-          name='description'
-          content='Create beautiful, customizable posters of your favorite albums with Posterfy. Powered by Spotify API, generate high-quality album artwork posters instantly. Free online poster maker for music lovers.'
-        />
-        <meta
-          name='keywords'
-          content='album poster, spotify, music poster, album art, poster maker, music artwork, album cover, poster generator, spotify poster, music design'
-        />
-        <meta name='author' content='Posterfy Team' />
-        <meta name='robots' content='index, follow' />
-        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-        <meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />
+        {/* Additional meta tags */}
         <meta name='language' content='English' />
-        <meta name='theme-color' content='#1DB954' />
-
-        {/* Open Graph Meta Tags */}
-        <meta property='og:type' content='website' />
-        <meta
-          property='og:title'
-          content='Posterfy - Create Stunning Album Posters'
-        />
-        <meta
-          property='og:description'
-          content='Create beautiful, customizable posters of your favorite albums with Posterfy. Powered by Spotify API for instant high-quality results.'
-        />
-        <meta property='og:url' content='https://www.posterfy.art/' />
-        <meta property='og:site_name' content='Posterfy' />
-        <meta
-          property='og:image'
-          content='https://www.posterfy.art/og-image.svg'
-        />
-        <meta property='og:image:width' content='1200' />
-        <meta property='og:image:height' content='630' />
-        <meta
-          property='og:image:alt'
-          content='Posterfy - Album Poster Generator'
-        />
-        <meta property='og:locale' content='en_US' />
-
-        {/* Twitter Card Meta Tags */}
-        <meta name='twitter:card' content='summary_large_image' />
-        <meta
-          name='twitter:title'
-          content='Posterfy - Create Stunning Album Posters'
-        />
-        <meta
-          name='twitter:description'
-          content='Create beautiful, customizable posters of your favorite albums with Posterfy. Powered by Spotify API.'
-        />
-        <meta
-          name='twitter:image'
-          content='https://www.posterfy.art/og-image.svg'
-        />
-        <meta
-          name='twitter:image:alt'
-          content='Posterfy - Album Poster Generator'
-        />
-        <meta name='twitter:creator' content='@posterfy' />
-        <meta name='twitter:site' content='@posterfy' />
-
-        {/* Favicon and Icons */}
-        <link rel='icon' href='/ico.png' />
-        <link rel='apple-touch-icon' href='/ico.png' />
-        <link rel='shortcut icon' href='/ico.png' />
-        <link rel='manifest' href='/manifest.json' />
-
-        {/* Apple Meta Tags */}
         <meta name='apple-mobile-web-app-capable' content='yes' />
         <meta
           name='apple-mobile-web-app-status-bar-style'
           content='black-translucent'
         />
         <meta name='apple-mobile-web-app-title' content='Posterfy' />
-
-        {/* Microsoft Meta Tags */}
         <meta name='msapplication-TileColor' content='#1DB954' />
         <meta name='msapplication-config' content='/browserconfig.xml' />
-
-        {/* Canonical URL */}
-        <link rel='canonical' href='https://www.posterfy.art/' />
-
-        {/* Hreflang Tags for Internationalization */}
-        <link rel='alternate' hrefLang='en' href='https://www.posterfy.art/' />
-        <link
-          rel='alternate'
-          hrefLang='pt'
-          href='https://www.posterfy.art/?lang=pt'
-        />
-        <link
-          rel='alternate'
-          hrefLang='es'
-          href='https://www.posterfy.art/?lang=es'
-        />
-        <link
-          rel='alternate'
-          hrefLang='x-default'
-          href='https://www.posterfy.art/'
-        />
 
         {/* Preconnect for Performance */}
         <link rel='preconnect' href='https://fonts.googleapis.com' />
@@ -240,7 +199,9 @@ export default function RootLayout({ children }) {
           )}
       </head>
       <body className={inter.className}>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <StyledComponentsRegistry>
+          <ClientProviders>{children}</ClientProviders>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

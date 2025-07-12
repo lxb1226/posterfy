@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 import { BiTime, BiUser } from 'react-icons/bi';
 import { MdArrowBack } from 'react-icons/md';
 
@@ -12,7 +13,7 @@ const Header = styled.header`
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 `;
 
-const BackButton = styled.button`
+const BackLink = styled(Link)`
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -24,6 +25,7 @@ const BackButton = styled.button`
   margin-bottom: 2rem;
   padding: 0.5rem 0;
   transition: opacity 0.3s ease;
+  text-decoration: none;
 
   &:hover {
     opacity: 0.8;
@@ -221,7 +223,7 @@ const Content = styled.div`
   }
 `;
 
-function BlogContent({ post, onGoBack }) {
+function BlogContent({ post }) {
   const formatDate = dateString => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -232,10 +234,10 @@ function BlogContent({ post, onGoBack }) {
 
   return (
     <Container>
-      <BackButton onClick={onGoBack}>
+      <BackLink href='/blog'>
         <MdArrowBack />
         Back to Blog
-      </BackButton>
+      </BackLink>
 
       <Header>
         {post.featured && <FeaturedBadge>Featured</FeaturedBadge>}

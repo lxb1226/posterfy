@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
 
 const HeroContainer = styled.div`
   text-align: center;
@@ -37,8 +36,6 @@ const Accent = styled.span`
 `;
 
 function BlogHero() {
-  const { t } = useTranslation();
-
   return (
     <HeroContainer>
       <Title>
