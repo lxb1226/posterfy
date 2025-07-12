@@ -9,6 +9,7 @@ const Container = styled.div`
   overflow: hidden;
   cursor: pointer;
   min-width: 150px;
+  transition: transform 0.2s ease;
 
   ::before {
     content: '';
@@ -25,6 +26,25 @@ const Container = styled.div`
   :hover::before {
     background-color: rgba(255, 255, 255, 0.05);
   }
+
+  @media (max-width: 768px) {
+    min-width: 140px;
+    padding: 8px;
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    // 移动端移除hover效果，使用touch feedback
+    :hover::before {
+      background-color: rgba(255, 255, 255, 0);
+    }
+  }
+
+  @media (max-width: 480px) {
+    min-width: 120px;
+    padding: 6px;
+  }
 `;
 
 const Cover = styled.img`
@@ -33,6 +53,16 @@ const Cover = styled.img`
   background-color: rgba(255, 255, 255, 0.05);
   height: auto;
   border-radius: 10px;
+
+  @media (max-width: 768px) {
+    width: 140px;
+    min-height: 140px;
+  }
+
+  @media (max-width: 480px) {
+    width: 120px;
+    min-height: 120px;
+  }
 `;
 
 const Title = styled.h3`
@@ -41,6 +71,19 @@ const Title = styled.h3`
   font-size: 0.8em;
   margin-top: 10px;
   padding-right: 20px;
+  line-height: 1.3;
+
+  @media (max-width: 768px) {
+    font-size: 0.85em;
+    margin-top: 8px;
+    padding-right: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8em;
+    margin-top: 6px;
+    padding-right: 10px;
+  }
 `;
 
 const Artist = styled.p`
@@ -48,7 +91,18 @@ const Artist = styled.p`
   color: white;
   font-size: 0.75em;
   margin-top: 5px;
-  opacity: 0.5;
+  opacity: 0.7;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 0.78em;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.75em;
+    margin-top: 3px;
+  }
 `;
 
 function Album({ title, artist, cover, id, onClick }) {

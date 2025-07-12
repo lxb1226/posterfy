@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { HiMenu, HiX } from 'react-icons/hi';
 import Icon from '../icons/icon';
 import LanguageSelector from './Languageselector';
 import ThemeSelector from './ThemeSelector';
@@ -100,7 +101,7 @@ const CenterSection = styled.div`
   gap: 2rem;
 
   @media (max-width: 768px) {
-    gap: 1rem;
+    display: none;
   }
 `;
 
@@ -115,8 +116,107 @@ const Divider = styled.div`
   transition: opacity 0.3s ease;
 `;
 
+const MobileMenuButton = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  min-height: 44px;
+  min-width: 44px;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--PosterfyGreen);
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+`;
+
+const MobileMenu = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  opacity: ${({ $isOpen }) => ($isOpen ? '1' : '0')};
+  visibility: ${({ $isOpen }) => ($isOpen ? 'visible' : 'hidden')};
+  transition: all 0.3s ease;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+`;
+
+const MobileMenuHeader = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+`;
+
+const MobileNavLink = styled(Link)`
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+
+  &:hover {
+    color: var(--PosterfyGreen);
+    background: rgba(29, 185, 84, 0.1);
+    transform: translateY(-2px);
+  }
+
+  ${({ $active }) =>
+    $active &&
+    `
+    color: var(--PosterfyGreen);
+    background: rgba(29, 185, 84, 0.15);
+  `}
+`;
+
+const MobileMenuFooter = styled.div`
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+`;
+
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -131,10 +231,72 @@ function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
+
+  const handleMobileMenuToggle = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const handleMobileNavClick = () => {
+    setMobileMenuOpen(false);
+  };
+
   return (
-    <NavbarContainer $scrolled={scrolled}>
-      <NavbarContent>
-        <LogoContainer>
+    <>
+      <NavbarContainer $scrolled={scrolled}>
+        <NavbarContent>
+          <LogoContainer>
+            <Link
+              href='/'
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                textDecoration: 'none',
+              }}
+              onClick={handleMobileNavClick}
+            >
+              <Icon fill={'#01b755'} width={'40px'} height={'44.05px'} />
+              <BrandName>Posterfy</BrandName>
+            </Link>
+          </LogoContainer>
+
+          <CenterSection>
+            <Navigation>
+              <NavLink href='/' $active={pathname === '/'}>
+                Home
+              </NavLink>
+              <NavLink href='/search' $active={pathname === '/search'}>
+                Search
+              </NavLink>
+              <NavLink href='/blog' $active={pathname?.startsWith('/blog')}>
+                Blog
+              </NavLink>
+            </Navigation>
+          </CenterSection>
+
+          <RightSection>
+            <ThemeSelector />
+            <LanguageSelector />
+            <MobileMenuButton onClick={handleMobileMenuToggle}>
+              {mobileMenuOpen ? <HiX /> : <HiMenu />}
+            </MobileMenuButton>
+          </RightSection>
+        </NavbarContent>
+        <Divider $scrolled={scrolled} />
+      </NavbarContainer>
+
+      <MobileMenu $isOpen={mobileMenuOpen}>
+        <MobileMenuHeader>
           <Link
             href='/'
             style={{
@@ -142,33 +304,46 @@ function Navbar() {
               alignItems: 'center',
               textDecoration: 'none',
             }}
+            onClick={handleMobileNavClick}
           >
-            <Icon fill={'#01b755'} width={'40px'} height={'44.05px'} />
-            <BrandName>Posterfy</BrandName>
+            <Icon fill={'#01b755'} width={'32px'} height={'35px'} />
+            <BrandName style={{ fontSize: '1.1em', marginLeft: '12px' }}>
+              Posterfy
+            </BrandName>
           </Link>
-        </LogoContainer>
+          <MobileMenuButton onClick={handleMobileMenuToggle}>
+            <HiX />
+          </MobileMenuButton>
+        </MobileMenuHeader>
 
-        <CenterSection>
-          <Navigation>
-            <NavLink href='/' $active={pathname === '/'}>
-              Home
-            </NavLink>
-            <NavLink href='/search' $active={pathname === '/search'}>
-              Search
-            </NavLink>
-            <NavLink href='/blog' $active={pathname?.startsWith('/blog')}>
-              Blog
-            </NavLink>
-          </Navigation>
-        </CenterSection>
+        <MobileNavLink
+          href='/'
+          $active={pathname === '/'}
+          onClick={handleMobileNavClick}
+        >
+          Home
+        </MobileNavLink>
+        <MobileNavLink
+          href='/search'
+          $active={pathname === '/search'}
+          onClick={handleMobileNavClick}
+        >
+          Search
+        </MobileNavLink>
+        <MobileNavLink
+          href='/blog'
+          $active={pathname?.startsWith('/blog')}
+          onClick={handleMobileNavClick}
+        >
+          Blog
+        </MobileNavLink>
 
-        <RightSection>
+        <MobileMenuFooter>
           <ThemeSelector />
           <LanguageSelector />
-        </RightSection>
-      </NavbarContent>
-      <Divider $scrolled={scrolled} />
-    </NavbarContainer>
+        </MobileMenuFooter>
+      </MobileMenu>
+    </>
   );
 }
 

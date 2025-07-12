@@ -20,8 +20,17 @@ import { Palette } from 'color-thief-react';
 import CanvasPoster from './CanvasPoster';
 
 const Container = styled.div`
-  width: 80%;
+  width: 85%;
   margin-inline: auto;
+
+  @media (max-width: 768px) {
+    width: 95%;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    padding: 0 10px;
+  }
 `;
 
 const DivBack = styled.div`
@@ -31,6 +40,13 @@ const DivBack = styled.div`
   width: min-content;
   margin-top: 100px; /* 增加上边距避免与固定导航栏重叠 */
   cursor: pointer;
+  padding: 8px;
+  min-height: 44px;
+
+  @media (max-width: 768px) {
+    margin-top: 80px;
+    padding: 12px 8px;
+  }
 `;
 
 const ArrowBack = styled(IoArrowBack)`
@@ -52,7 +68,7 @@ const ContainerEditor = styled.div`
   flex-direction: row;
   align-items: flex-start; /* 确保左侧图片和右侧面板顶部对齐 */
 
-  @media (max-width: 1300px) {
+  @media (max-width: 768px) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -64,9 +80,17 @@ const PosterPreview = styled.img`
   height: 548px;
   margin-right: 20px;
 
-  @media (max-width: 450px) {
-    width: 95%;
+  @media (max-width: 768px) {
+    width: 90%;
+    height: auto;
+    max-width: 350px;
     margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 480px) {
+    width: 95%;
+    max-width: 320px;
   }
 `;
 
@@ -83,10 +107,21 @@ const TabsContainer = styled.div`
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   width: 90%;
   margin-inline: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: center;
+  }
 `;
 
 const Tab = styled.div`
-  padding: 10px 20px;
+  padding: 12px 20px;
   font-size: 1em;
   font-weight: 500;
   color: ${({ $active }) => ($active ? '#fff' : 'rgba(255, 255, 255, 0.5)')};
@@ -96,25 +131,44 @@ const Tab = styled.div`
   transition:
     color 0.3s,
     border-bottom 0.3s;
+  white-space: nowrap;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 
   &:hover {
     color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    padding: 15px 20px;
+    font-size: 0.95em;
+    min-height: 48px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 16px;
+    font-size: 0.9em;
   }
 `;
 
 const EditorSettings = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 7px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
   padding-inline: 30px;
   width: 100%;
 
-  @media (max-width: 1300px) {
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding-inline: 20px;
     margin-top: 15px;
   }
 
-  @media (max-width: 530px) {
-    padding: 0;
+  @media (max-width: 480px) {
+    padding-inline: 15px;
+    gap: 12px;
   }
 `;
 
@@ -153,16 +207,21 @@ const TracklistTextarea = styled.textarea`
 const DivButtons = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 15px;
+  margin-top: 20px;
   margin-inline: -20px;
   justify-content: end;
+  gap: 10px;
 
-  @media (max-width: 450px) {
+  @media (max-width: 768px) {
     justify-content: center;
+    margin-inline: 0;
+    flex-wrap: wrap;
   }
 
-  @media (max-width: 350px) {
+  @media (max-width: 480px) {
     flex-direction: column;
+    align-items: center;
+    gap: 12px;
   }
 `;
 
@@ -172,13 +231,14 @@ const ButtonDiv = styled.div`
   flex-direction: row;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.05);
-  padding: 7px 15px;
+  padding: 12px 20px;
   width: min-content;
-  margin-left: 15px;
   cursor: pointer;
   justify-content: center;
   align-items: center;
   z-index: 1;
+  min-height: 44px;
+  white-space: nowrap;
 
   ::before {
     content: '';
@@ -197,10 +257,16 @@ const ButtonDiv = styled.div`
     background-color: rgba(255, 255, 255, 0.1);
   }
 
-  @media (max-width: 350px) {
-    margin-inline: auto;
-    margin-bottom: 20px;
-    padding-inline: 50px;
+  @media (max-width: 768px) {
+    padding: 15px 24px;
+    min-height: 48px;
+    font-size: 1.05em;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    max-width: 280px;
+    padding: 16px 20px;
   }
 `;
 
