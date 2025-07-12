@@ -3,11 +3,23 @@
 import { Suspense, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 import Navbar from '../../src/components/Navbar/Navbar.jsx';
 import Anchor from '../../src/components/Anchor.jsx';
 import Grid from '../../src/components/Grid.jsx';
 import Footer from '../../src/components/Footer.jsx';
 import Searchbar from '../../src/components/Searchbar.jsx';
+
+const Container = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
+
+const MainContent = styled.main`
+  flex: 1;
+  padding-top: 100px;
+`;
 
 function SearchContent() {
   const { t } = useTranslation();
@@ -186,9 +198,9 @@ function SearchContent() {
   }, [query]);
 
   return (
-    <>
+    <Container>
       <Navbar />
-      <div style={{ paddingTop: '100px' }}>
+      <MainContent>
         <Anchor text={t('anchorArt')} type={1} />
         <Searchbar onSearch={onSearch} defaultValue={query} />
         {query && (
@@ -205,9 +217,9 @@ function SearchContent() {
             <Grid query={query} onclick={onClickAlbum} />
           </>
         )}
-      </div>
+      </MainContent>
       <Footer />
-    </>
+    </Container>
   );
 }
 

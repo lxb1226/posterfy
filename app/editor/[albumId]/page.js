@@ -2,9 +2,20 @@
 
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import PosterEditor from '../../../src/components/PosterEditor/PosterEditor.jsx';
 import Navbar from '../../../src/components/Navbar/Navbar.jsx';
 import Footer from '../../../src/components/Footer.jsx';
+
+const Container = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
+
+const MainContent = styled.main`
+  flex: 1;
+`;
 
 export default function EditorPage() {
   const params = useParams();
@@ -104,10 +115,12 @@ export default function EditorPage() {
   }
 
   return (
-    <>
+    <Container>
       <Navbar />
-      <PosterEditor albumID={albumId} handleClickBack={handleClickBack} />
+      <MainContent>
+        <PosterEditor albumID={albumId} handleClickBack={handleClickBack} />
+      </MainContent>
       <Footer />
-    </>
+    </Container>
   );
 }
