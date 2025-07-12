@@ -5,6 +5,12 @@ import '../src/index.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1.0,
+  themeColor: '#1DB954',
+};
+
 export const metadata = {
   title: 'Posterfy - Create Stunning Album Posters | Spotify Powered',
   description:
@@ -13,8 +19,6 @@ export const metadata = {
     'album poster, spotify, music poster, album art, poster maker, music artwork, album cover, poster generator, spotify poster, music design',
   authors: [{ name: 'Posterfy Team' }],
   robots: 'index, follow',
-  viewport: 'width=device-width, initial-scale=1.0',
-  themeColor: '#1DB954',
   openGraph: {
     type: 'website',
     title: 'Posterfy - Create Stunning Album Posters',
