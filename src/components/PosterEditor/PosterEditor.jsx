@@ -66,7 +66,7 @@ const ContainerEditor = styled.div`
   margin-top: 15px;
   display: flex;
   flex-direction: row;
-  align-items: flex-start; /* 确保左侧图片和右侧面板顶部对齐 */
+  align-items: stretch; /* 让左侧图片和右侧面板等高对齐 */
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -98,6 +98,7 @@ const EditorColumn = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%; /* 确保右侧面板占满容器高度 */
 `;
 
 const TabsContainer = styled.div`
