@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Icon from '../icons/icon';
 import LanguageSelector from './Languageselector';
 import ThemeSelector from './ThemeSelector';
@@ -37,6 +39,44 @@ const LogoContainer = styled.div`
   align-items: center;
 `;
 
+const Navigation = styled.nav`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
+`;
+
+const NavLink = styled(Link)`
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &:hover {
+    color: var(--PosterfyGreen);
+    background: rgba(29, 185, 84, 0.1);
+  }
+
+  ${({ $active }) =>
+    $active &&
+    `
+    color: var(--PosterfyGreen);
+    background: rgba(29, 185, 84, 0.15);
+  `}
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+`;
+
 const BrandName = styled.h1`
   font-weight: bolder;
   margin-left: 20px;
@@ -48,6 +88,20 @@ const RightSection = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+
+  @media (max-width: 768px) {
+    gap: 8px;
+  }
+`;
+
+const CenterSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
 `;
 
 const Divider = styled.div`
@@ -63,6 +117,7 @@ const Divider = styled.div`
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,9 +135,33 @@ function Navbar() {
     <NavbarContainer $scrolled={scrolled}>
       <NavbarContent>
         <LogoContainer>
-          <Icon fill={'#01b755'} width={'40px'} height={'44.05px'} />
-          <BrandName>Posterfy</BrandName>
+          <Link
+            href='/'
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              textDecoration: 'none',
+            }}
+          >
+            <Icon fill={'#01b755'} width={'40px'} height={'44.05px'} />
+            <BrandName>Posterfy</BrandName>
+          </Link>
         </LogoContainer>
+
+        <CenterSection>
+          <Navigation>
+            <NavLink href='/' $active={pathname === '/'}>
+              Home
+            </NavLink>
+            <NavLink href='/search' $active={pathname === '/search'}>
+              Search
+            </NavLink>
+            <NavLink href='/blog' $active={pathname?.startsWith('/blog')}>
+              Blog
+            </NavLink>
+          </Navigation>
+        </CenterSection>
+
         <RightSection>
           <ThemeSelector />
           <LanguageSelector />
