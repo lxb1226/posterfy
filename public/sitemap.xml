@@ -63,4 +63,54 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://www.posterfy.art/editor?lang=es" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.posterfy.art/editor" />
   </url>
+  <url>
+    <loc>https://www.posterfy.art/about</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.posterfy.art/about" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.posterfy.art/about?lang=pt" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.posterfy.art/about?lang=es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.posterfy.art/about" />
+  </url>
+  <url>
+    <loc>https://www.posterfy.art/contact</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.posterfy.art/contact" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.posterfy.art/contact?lang=pt" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.posterfy.art/contact?lang=es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.posterfy.art/contact" />
+  </url>
+  <url>
+    <loc>https://www.posterfy.art/privacy</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.posterfy.art/privacy" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.posterfy.art/privacy?lang=pt" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.posterfy.art/privacy?lang=es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.posterfy.art/privacy" />
+  </url>
+  <url>
+    <loc>https://www.posterfy.art/terms</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.posterfy.art/terms" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.posterfy.art/terms?lang=pt" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.posterfy.art/terms?lang=es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.posterfy.art/terms" />
+  </url>
+  <url>
+    <loc>https://www.posterfy.art/sitemap</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.posterfy.art/sitemap" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.posterfy.art/sitemap?lang=pt" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.posterfy.art/sitemap?lang=es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.posterfy.art/sitemap" />
+  </url>
 </urlset>

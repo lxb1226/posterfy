@@ -2,8 +2,19 @@
 
 import styled, { keyframes } from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import Link from 'next/link';
 import Icon from './icons/icon';
-import { FaGithub, FaHeart } from 'react-icons/fa';
+import {
+  FaGithub,
+  FaHeart,
+  FaShieldAlt,
+  FaFileContract,
+  FaInfoCircle,
+  FaEnvelope,
+  FaNewspaper,
+  FaPalette,
+  FaSitemap,
+} from 'react-icons/fa';
 
 const float = keyframes`
   0% { transform: translateY(0px) rotate(0deg); }
@@ -36,8 +47,8 @@ const Container = styled.div`
   );
   backdrop-filter: blur(10px);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 40px 0;
-  margin-top: 100px;
+  padding: 60px 0 40px;
+  margin-top: 40px;
   position: relative;
   overflow: hidden;
 
@@ -57,31 +68,39 @@ const Container = styled.div`
   }
 
   @media (max-width: 768px) {
-    padding: 30px 0;
+    padding: 40px 0 30px;
   }
 
   @media (max-width: 480px) {
-    padding: 25px 0;
+    padding: 30px 0 25px;
   }
 `;
 
 const FooterContent = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 40px;
   padding: 0 20px;
+  align-items: start;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
 
   @media (max-width: 768px) {
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
   }
 `;
 
-const CreditsSection = styled.div`
+const BrandSection = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 20px;
   animation: ${slideIn} 0.5s ease-out;
 
@@ -91,11 +110,221 @@ const CreditsSection = styled.div`
   }
 `;
 
+const LinksSection = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 30px;
+  animation: ${slideIn} 0.5s ease-out;
+  animation-delay: 0.2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+`;
+
+const LinkColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  h3 {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: var(--PosterfyGreen);
+      border-radius: 1px;
+    }
+
+    @media (max-width: 768px) {
+      text-align: center;
+
+      &::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+`;
+
+const FooterLink = styled(Link)`
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+
+  svg {
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+
+  &:hover {
+    color: var(--PosterfyGreen);
+    transform: translateX(5px);
+
+    svg {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    justify-content: center;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+`;
+
+const ExternalLink = styled.a`
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+
+  svg {
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+
+  &:hover {
+    color: var(--PosterfyGreen);
+    transform: translateX(5px);
+
+    svg {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    justify-content: center;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+`;
+
+const SocialSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+  animation: ${slideIn} 0.5s ease-out;
+  animation-delay: 0.4s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+
+  @media (max-width: 1024px) {
+    grid-column: span 2;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    grid-column: span 1;
+    align-items: center;
+  }
+`;
+
+const SocialLinks = styled.div`
+  display: flex;
+  gap: 15px;
+
+  @media (max-width: 480px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+`;
+
+const GithubLink = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  svg {
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    border-color: var(--PosterfyGreen);
+
+    svg {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9em;
+    padding: 8px 14px;
+  }
+`;
+
+const BottomSection = styled.div`
+  grid-column: 1 / -1;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: ${slideIn} 0.5s ease-out;
+  animation-delay: 0.6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+`;
+
 const AnimatedIconWrapper = styled.div`
   position: relative;
-  width: 100px;
-  height: 100px;
-  margin-bottom: 10px;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 15px;
 
   .icon-main {
     animation: ${float} 3s ease infinite;
@@ -106,35 +335,41 @@ const AnimatedIconWrapper = styled.div`
   }
 
   @media (max-width: 768px) {
-    margin: 0 auto 20px;
+    margin: 0 auto 15px;
   }
 `;
 
 const IconMain = styled.div`
   position: absolute;
   top: 0;
-  left: 10;
+  left: 0;
   transition: all 0.3s ease;
-  margin-inline: auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const IconShadow = styled.div`
   position: absolute;
   bottom: 5px;
-  width: 80px;
-  height: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 15px;
   background: var(--PosterfyGreen);
-  filter: blur(15px);
+  filter: blur(12px);
   opacity: 0.3;
   border-radius: 50%;
   transition: all 0.3s ease;
 `;
 
 const CreditText = styled.div`
-  font-size: 1.1em;
+  font-size: 1rem;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.8);
-  max-width: 400px;
+  max-width: 300px;
   position: relative;
 
   .credit-content {
@@ -191,16 +426,16 @@ const CreditText = styled.div`
   }
 
   @media (max-width: 480px) {
-    font-size: 1em;
+    font-size: 0.9rem;
+    max-width: 250px;
   }
 `;
 
 const CopyrightText = styled.div`
-  margin-top: 20px;
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.85em;
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.6);
 
   svg {
@@ -212,52 +447,6 @@ const CopyrightText = styled.div`
   }
 `;
 
-const SocialSection = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-  padding-top: 15px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  animation: ${slideIn} 0.5s ease-out;
-  animation-delay: 0.4s;
-  opacity: 0;
-  animation-fill-mode: forwards;
-`;
-
-const GithubLink = styled.a`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 500;
-  padding: 8px 16px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
-
-  svg {
-    font-size: 1.3em;
-    transition: transform 0.3s ease;
-  }
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-
-    svg {
-      transform: rotate(360deg);
-    }
-  }
-
-  @media (max-width: 480px) {
-    font-size: 0.9em;
-    padding: 6px 12px;
-  }
-`;
-
 function Footer() {
   const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
@@ -265,37 +454,111 @@ function Footer() {
   return (
     <Container>
       <FooterContent>
-        <CreditsSection>
+        {/* Brand Section */}
+        <BrandSection>
           <AnimatedIconWrapper>
             <IconShadow className='icon-shadow' />
             <IconMain className='icon-main'>
-              <Icon fill={'white'} width={'100px'} height={'88.1px'} />
+              <Icon fill={'white'} width={'70px'} height={'62px'} />
             </IconMain>
           </AnimatedIconWrapper>
 
           <CreditText>
             <div className='credit-content'>
               {t('MadeBy')}{' '}
-              <a href='https://github.com/avictormorais' target='blank'>
+              <a
+                href='https://github.com/avictormorais'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 Victor
               </a>
             </div>
           </CreditText>
+        </BrandSection>
 
+        {/* Links Section */}
+        <LinksSection>
+          {/* Company Links */}
+          <LinkColumn>
+            <h3>Company</h3>
+            <FooterLink href='/about'>
+              <FaInfoCircle />
+              About Us
+            </FooterLink>
+            <FooterLink href='/contact'>
+              <FaEnvelope />
+              Contact
+            </FooterLink>
+            <FooterLink href='/blog'>
+              <FaNewspaper />
+              Blog
+            </FooterLink>
+            <ExternalLink
+              href='https://github.com/avictormorais/posterfy'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <FaGithub />
+              GitHub
+            </ExternalLink>
+          </LinkColumn>
+
+          {/* Product Links */}
+          <LinkColumn>
+            <h3>Product</h3>
+            <FooterLink href='/'>
+              <FaPalette />
+              Create Poster
+            </FooterLink>
+            <FooterLink href='/#features'>Features</FooterLink>
+            <FooterLink href='/#faq'>FAQ</FooterLink>
+            <FooterLink href='/sitemap'>
+              <FaSitemap />
+              Site Map
+            </FooterLink>
+          </LinkColumn>
+
+          {/* Legal Links */}
+          <LinkColumn>
+            <h3>Legal</h3>
+            <FooterLink href='/privacy'>
+              <FaShieldAlt />
+              Privacy Policy
+            </FooterLink>
+            <FooterLink href='/terms'>
+              <FaFileContract />
+              Terms of Service
+            </FooterLink>
+          </LinkColumn>
+        </LinksSection>
+
+        {/* Social Section */}
+        <SocialSection>
+          <SocialLinks>
+            <GithubLink
+              href='https://github.com/avictormorais/posterfy'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <FaGithub /> {t('ViewGitHub', 'GitHub')}
+            </GithubLink>
+          </SocialLinks>
+        </SocialSection>
+
+        {/* Bottom Section */}
+        <BottomSection>
           <CopyrightText>
             <FaHeart /> © {currentYear} Posterfy.{' '}
             {t('AllRights', 'All rights reserved.')}
           </CopyrightText>
-        </CreditsSection>
 
-        <SocialSection>
-          <GithubLink
-            href='https://github.com/avictormorais/posterfy'
-            target='blank'
+          <div
+            style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.5)' }}
           >
-            <FaGithub /> {t('ViewGitHub', 'GitHub')}
-          </GithubLink>
-        </SocialSection>
+            Free • Open Source • Educational
+          </div>
+        </BottomSection>
       </FooterContent>
     </Container>
   );

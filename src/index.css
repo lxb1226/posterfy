@@ -39,4 +39,22 @@ body {
   min-height: 100vh;
   background-color: var(--backgroundColor);
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#__next {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Prevent excessive spacing in page layouts */
+main {
+  flex: 1;
+}
+
+/* Smooth scrolling for better UX */
+html {
+  scroll-behavior: smooth;
 }
