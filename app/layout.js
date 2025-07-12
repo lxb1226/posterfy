@@ -96,6 +96,24 @@ export default function RootLayout({ children }) {
         {/* Canonical URL */}
         <link rel='canonical' href='https://www.posterfy.art/' />
 
+        {/* Hreflang Tags for Internationalization */}
+        <link rel='alternate' hrefLang='en' href='https://www.posterfy.art/' />
+        <link
+          rel='alternate'
+          hrefLang='pt'
+          href='https://www.posterfy.art/?lang=pt'
+        />
+        <link
+          rel='alternate'
+          hrefLang='es'
+          href='https://www.posterfy.art/?lang=es'
+        />
+        <link
+          rel='alternate'
+          hrefLang='x-default'
+          href='https://www.posterfy.art/'
+        />
+
         {/* Preconnect for Performance */}
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link
@@ -105,6 +123,12 @@ export default function RootLayout({ children }) {
         />
         <link rel='preconnect' href='https://i.scdn.co' />
         <link rel='preconnect' href='https://mosaic.scdn.co' />
+        <link rel='dns-prefetch' href='https://api.spotify.com' />
+        <link rel='dns-prefetch' href='https://itunes.apple.com' />
+
+        {/* Resource Hints for Performance */}
+        <link rel='prefetch' href='/ico.png' as='image' />
+        <link rel='prefetch' href='/og-image.svg' as='image' />
 
         {/* Structured Data - JSON-LD */}
         <script
@@ -134,6 +158,49 @@ export default function RootLayout({ children }) {
                 'Customizable designs',
                 'High-quality downloads',
                 'Free to use',
+              ],
+              inLanguage: ['en', 'pt', 'es'],
+              audience: {
+                '@type': 'Audience',
+                audienceType: 'Music lovers, designers, social media users',
+              },
+              keywords:
+                'album poster, spotify, music poster, album art, poster maker, music artwork, album cover, poster generator',
+            }),
+          }}
+        />
+
+        {/* Additional Organization Structured Data */}
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Posterfy',
+              url: 'https://www.posterfy.art/',
+              logo: 'https://www.posterfy.art/ico.png',
+              description:
+                'Open-source album poster generator powered by Spotify API',
+              sameAs: ['https://github.com/posterfy/posterfy'],
+            }),
+          }}
+        />
+
+        {/* Breadcrumb Structured Data for Home Page */}
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Home',
+                  item: 'https://www.posterfy.art/',
+                },
               ],
             }),
           }}

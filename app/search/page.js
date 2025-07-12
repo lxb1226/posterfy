@@ -3,7 +3,6 @@
 import { Suspense, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
-import Head from 'next/head';
 import Navbar from '../../src/components/Navbar/Navbar.jsx';
 import Anchor from '../../src/components/Anchor.jsx';
 import Grid from '../../src/components/Grid.jsx';
@@ -87,6 +86,47 @@ function SearchContent() {
           `https://www.posterfy.art/search?q=${encodeURIComponent(query)}`
         );
       }
+
+      // Add search page breadcrumb structured data
+      const breadcrumbData = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://www.posterfy.art/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Search',
+            item: 'https://www.posterfy.art/search',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: `Search: ${query}`,
+            item: `https://www.posterfy.art/search?q=${encodeURIComponent(query)}`,
+          },
+        ],
+      };
+
+      // Remove existing breadcrumb structured data
+      const existingBreadcrumb = document.getElementById(
+        'search-breadcrumb-data'
+      );
+      if (existingBreadcrumb) {
+        existingBreadcrumb.remove();
+      }
+
+      // Add new breadcrumb structured data
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.innerHTML = JSON.stringify(breadcrumbData);
+      script.id = 'search-breadcrumb-data';
+      document.head.appendChild(script);
     } else {
       document.title = 'Search Albums | Posterfy - Album Poster Generator';
 
@@ -99,7 +139,50 @@ function SearchContent() {
           'Search for your favorite albums and create stunning posters with Posterfy. Powered by Spotify API for instant high-quality results.'
         );
       }
+
+      // Add basic search page breadcrumb
+      const breadcrumbData = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://www.posterfy.art/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Search',
+            item: 'https://www.posterfy.art/search',
+          },
+        ],
+      };
+
+      const existingBreadcrumb = document.getElementById(
+        'search-breadcrumb-data'
+      );
+      if (existingBreadcrumb) {
+        existingBreadcrumb.remove();
+      }
+
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.innerHTML = JSON.stringify(breadcrumbData);
+      script.id = 'search-breadcrumb-data';
+      document.head.appendChild(script);
     }
+
+    // Cleanup function
+    return () => {
+      const breadcrumbToRemove = document.getElementById(
+        'search-breadcrumb-data'
+      );
+      if (breadcrumbToRemove) {
+        breadcrumbToRemove.remove();
+      }
+    };
   }, [query]);
 
   return (

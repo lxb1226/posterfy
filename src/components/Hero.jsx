@@ -122,10 +122,25 @@ function Hero() {
           <Paragraph>{t('paragraphHero2')}</Paragraph>
 
           <ContainerIcon>
-            <Icon fill={'white'} width={'180px'} height={'198.23px'} />
+            <Icon
+              fill={'white'}
+              width={'180px'}
+              height={'198.23px'}
+              alt='Posterfy Logo - Album Poster Generator'
+            />
           </ContainerIcon>
 
-          <HeroIcon onClick={handleScroll} />
+          <HeroIcon
+            onClick={handleScroll}
+            aria-label='Scroll down to explore features'
+            role='button'
+            tabIndex={0}
+            onKeyDown={e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                handleScroll();
+              }
+            }}
+          />
         </Container>
       </HeroDiv>
       <DivAlbum />

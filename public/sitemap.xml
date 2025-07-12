@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.posterfy.art/</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.posterfy.art/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.posterfy.art/?lang=pt" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.posterfy.art/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.posterfy.art/" />
     <image:image>
       <image:loc>https://www.posterfy.art/og-image.svg</image:loc>
       <image:title>Posterfy - Album Poster Generator</image:title>
@@ -16,11 +20,19 @@
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.posterfy.art/search" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.posterfy.art/search?lang=pt" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.posterfy.art/search?lang=es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.posterfy.art/search" />
   </url>
   <url>
     <loc>https://www.posterfy.art/editor</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.posterfy.art/editor" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.posterfy.art/editor?lang=pt" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.posterfy.art/editor?lang=es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.posterfy.art/editor" />
   </url>
 </urlset>
