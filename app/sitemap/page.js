@@ -11,7 +11,6 @@ import {
   FaShieldAlt,
   FaFileContract,
   FaPalette,
-  FaGithub,
   FaSitemap,
 } from 'react-icons/fa';
 import Navbar from '../../src/components/Navbar/Navbar.jsx';
@@ -110,31 +109,6 @@ const SitemapItem = styled.li`
 `;
 
 const SitemapLink = styled(Link)`
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 0;
-
-  svg {
-    font-size: 0.9rem;
-    opacity: 0.7;
-  }
-
-  &:hover {
-    color: #1db954;
-    transform: translateX(5px);
-
-    svg {
-      opacity: 1;
-    }
-  }
-`;
-
-const ExternalSitemapLink = styled.a`
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   font-size: 1rem;
@@ -337,44 +311,6 @@ export default function SitemapPage() {
                   <FaFileContract />
                   Terms of Service
                 </SitemapLink>
-              </SitemapItem>
-            </SitemapList>
-          </SitemapSection>
-
-          {/* External Resources */}
-          <SitemapSection>
-            <h2>
-              <FaGithub className='icon' />
-              External Resources
-            </h2>
-            <SitemapList>
-              <SitemapItem>
-                <ExternalSitemapLink
-                  href='https://github.com/avictormorais/posterfy'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <FaGithub />
-                  GitHub Repository
-                </ExternalSitemapLink>
-              </SitemapItem>
-              <SitemapItem>
-                <ExternalSitemapLink
-                  href='https://github.com/avictormorais/posterfy/issues'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  Bug Reports & Issues
-                </ExternalSitemapLink>
-              </SitemapItem>
-              <SitemapItem>
-                <ExternalSitemapLink
-                  href='https://github.com/avictormorais/posterfy/discussions'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  Community Discussions
-                </ExternalSitemapLink>
               </SitemapItem>
             </SitemapList>
           </SitemapSection>

@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect } from 'react';
+import { FaCode, FaPalette, FaSpotify } from 'react-icons/fa';
+import { MdCode, MdSchool, MdTrendingUp } from 'react-icons/md';
 import styled from 'styled-components';
-import { FaGithub, FaSpotify, FaCode, FaPalette } from 'react-icons/fa';
-import { MdSchool, MdTrendingUp, MdCode } from 'react-icons/md';
-import Navbar from '../../src/components/Navbar/Navbar.jsx';
 import Footer from '../../src/components/Footer.jsx';
+import Navbar from '../../src/components/Navbar/Navbar.jsx';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -275,9 +275,7 @@ export default function AboutPage() {
         founder: {
           '@type': 'Person',
           name: 'Victor Morais',
-          sameAs: 'https://github.com/avictormorais',
         },
-        sameAs: ['https://github.com/avictormorais/posterfy'],
         knowsAbout: [
           'Web Design',
           'Music Visualization',
@@ -481,32 +479,6 @@ export default function AboutPage() {
         </Section>
 
         <Section>
-          <h2>Meet the Creator</h2>
-          <TeamSection>
-            <div className='avatar'>VM</div>
-            <h3>Victor Morais</h3>
-            <p className='role'>Founder & Lead Developer</p>
-            <p>
-              Victor is a passionate developer and music enthusiast who created
-              Posterfy to combine his love for technology, design, and music.
-              With a background in web development and a keen eye for user
-              experience, Victor believes in creating tools that are both
-              powerful and accessible.
-            </p>
-            <div className='links'>
-              <a
-                href='https://github.com/avictormorais'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <FaGithub />
-                GitHub
-              </a>
-            </div>
-          </TeamSection>
-        </Section>
-
-        <Section>
           <h2>Technology & Innovation</h2>
           <p>
             Posterfy is built using cutting-edge web technologies to ensure a
@@ -624,27 +596,15 @@ export default function AboutPage() {
             </li>
             <li>
               <strong>Technical Issues:</strong>{' '}
-              <a
-                href='https://github.com/avictormorais/posterfy/issues'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                GitHub Issues
-              </a>
+              <a href='mailto:heyjude1817@gmail.com'>heyjude1817@gmail.com</a>
             </li>
             <li>
               <strong>Feature Requests:</strong>{' '}
-              <a
-                href='https://github.com/avictormorais/posterfy/discussions'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                GitHub Discussions
-              </a>
+              <a href='mailto:heyjude1817@gmail.com'>heyjude1817@gmail.com</a>
             </li>
             <li>
               <strong>Privacy Concerns:</strong>{' '}
-              <a href='mailto:privacy@posterfy.art'>privacy@posterfy.art</a>
+              <a href='mailto:heyjude1817@gmail.com'>heyjude1817@gmail.com</a>
             </li>
           </ul>
         </Section>

@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import {
-  FaGithub,
   FaEnvelope,
   FaBug,
   FaLightbulb,
@@ -287,18 +286,13 @@ export default function ContactPage() {
         contactPoint: [
           {
             '@type': 'ContactPoint',
-            contactType: 'Technical Support',
-            url: 'https://github.com/avictormorais/posterfy/issues',
-          },
-          {
-            '@type': 'ContactPoint',
             contactType: 'General Inquiries',
-            email: 'contact@posterfy.art',
+            email: 'heyjude1817@gmail.com',
           },
           {
             '@type': 'ContactPoint',
             contactType: 'Privacy Concerns',
-            email: 'privacy@posterfy.art',
+            email: 'heyjude1817@gmail.com',
           },
         ],
       },
@@ -366,12 +360,10 @@ export default function ContactPage() {
               improve Posterfy by reporting bugs and technical issues.
             </p>
             <a
-              href='https://github.com/avictormorais/posterfy/issues/new?template=bug_report.md'
-              target='_blank'
-              rel='noopener noreferrer'
+              href='mailto:heyjude1817@gmail.com?subject=Bug Report - Posterfy'
               className='action-button'
             >
-              <FaGithub />
+              <FaEnvelope />
               Report Bug
             </a>
           </ContactCard>
@@ -384,9 +376,7 @@ export default function ContactPage() {
               to hear your feature suggestions and improvements.
             </p>
             <a
-              href='https://github.com/avictormorais/posterfy/issues/new?template=feature_request.md'
-              target='_blank'
-              rel='noopener noreferrer'
+              href='mailto:heyjude1817@gmail.com?subject=Feature Request - Posterfy'
               className='action-button'
             >
               <FaLightbulb />
@@ -402,13 +392,11 @@ export default function ContactPage() {
               Posterfy. We value all user input and suggestions.
             </p>
             <a
-              href='https://github.com/avictormorais/posterfy/discussions'
-              target='_blank'
-              rel='noopener noreferrer'
+              href='mailto:heyjude1817@gmail.com?subject=Feedback - Posterfy'
               className='action-button'
             >
               <MdFeedback />
-              Start Discussion
+              Send Feedback
             </a>
           </ContactCard>
 
@@ -432,7 +420,10 @@ export default function ContactPage() {
               Have questions about privacy, data handling, or security? We take
               these concerns seriously and respond promptly.
             </p>
-            <a href='mailto:privacy@posterfy.art' className='action-button'>
+            <a
+              href='mailto:heyjude1817@gmail.com?subject=Privacy Inquiry - Posterfy'
+              className='action-button'
+            >
               <FaEnvelope />
               Email Privacy Team
             </a>
@@ -445,7 +436,10 @@ export default function ContactPage() {
               For partnerships, media inquiries, or other general questions that
               don&apos;t fit the above categories.
             </p>
-            <a href='mailto:contact@posterfy.art' className='action-button'>
+            <a
+              href='mailto:heyjude1817@gmail.com?subject=General Inquiry - Posterfy'
+              className='action-button'
+            >
               <FaEnvelope />
               Send Email
             </a>
@@ -496,9 +490,6 @@ export default function ContactPage() {
         <ResponseTimeCard>
           <h3>🕐 Response Times</h3>
           <p>
-            <strong>GitHub Issues & Discussions:</strong> Usually within 24-48
-            hours
-            <br />
             <strong>Email Inquiries:</strong> Within 2-3 business days
             <br />
             <strong>Privacy Concerns:</strong> Within 24 hours
@@ -527,119 +518,6 @@ export default function ContactPage() {
             <li>
               <strong>Being Constructive:</strong> Focus on solutions and
               improvements
-            </li>
-            <li>
-              <strong>Searching First:</strong> Check existing issues and
-              discussions before creating new ones
-            </li>
-          </ul>
-        </Section>
-
-        <Section>
-          <h2>Open Source Contributions</h2>
-          <p>
-            Interested in contributing to Posterfy? We welcome contributions
-            from developers, designers, and enthusiasts of all skill levels:
-          </p>
-          <ul>
-            <li>
-              <strong>Code Contributions:</strong> Bug fixes, new features,
-              performance improvements
-            </li>
-            <li>
-              <strong>Design Contributions:</strong> UI/UX improvements, design
-              assets, mockups
-            </li>
-            <li>
-              <strong>Documentation:</strong> Help improve our docs, tutorials,
-              and guides
-            </li>
-            <li>
-              <strong>Testing:</strong> Help us test new features and report
-              issues
-            </li>
-            <li>
-              <strong>Translation:</strong> Help us make Posterfy available in
-              more languages
-            </li>
-          </ul>
-          <p>
-            Check out our{' '}
-            <a
-              href='https://github.com/avictormorais/posterfy'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              GitHub repository
-            </a>{' '}
-            to get started!
-          </p>
-        </Section>
-
-        <Section>
-          <h2>Stay Connected</h2>
-          <p>
-            Follow our development progress and stay updated with the latest
-            features:
-          </p>
-          <ul>
-            <li>
-              <strong>GitHub:</strong>{' '}
-              <a
-                href='https://github.com/avictormorais/posterfy'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                @avictormorais/posterfy
-              </a>
-            </li>
-            <li>
-              <strong>Blog:</strong> <a href='/blog'>Posterfy Blog</a> for
-              updates and tutorials
-            </li>
-            <li>
-              <strong>Changelog:</strong> Track our progress and new releases
-            </li>
-          </ul>
-        </Section>
-
-        <Section>
-          <h2>Alternative Contact Methods</h2>
-          <p>
-            If the above methods don&apos;t work for you, here are some
-            additional ways to get in touch:
-          </p>
-          <ul>
-            <li>
-              <strong>GitHub Profile:</strong> Message{' '}
-              <a
-                href='https://github.com/avictormorais'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                @avictormorais
-              </a>{' '}
-              directly
-            </li>
-            <li>
-              <strong>Project Wiki:</strong> Check our{' '}
-              <a
-                href='https://github.com/avictormorais/posterfy/wiki'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                documentation wiki
-              </a>
-            </li>
-            <li>
-              <strong>Community Forum:</strong> Join discussions in our{' '}
-              <a
-                href='https://github.com/avictormorais/posterfy/discussions'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                GitHub Discussions
-              </a>
             </li>
           </ul>
         </Section>

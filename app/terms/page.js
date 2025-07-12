@@ -497,17 +497,7 @@ export default function TermsOfService() {
           <ul>
             <li>
               <strong>Email:</strong>{' '}
-              <a href='mailto:legal@posterfy.art'>legal@posterfy.art</a>
-            </li>
-            <li>
-              <strong>GitHub:</strong>{' '}
-              <a
-                href='https://github.com/avictormorais/posterfy/issues'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                Open an issue
-              </a>
+              <a href='mailto:heyjude1817@gmail.com'>heyjude1817@gmail.com</a>
             </li>
             <li>
               <strong>Website:</strong> <a href='/contact'>Contact page</a>

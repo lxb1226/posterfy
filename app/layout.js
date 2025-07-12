@@ -143,9 +143,7 @@ export default function RootLayout({ children }) {
               name: 'Posterfy',
               url: 'https://www.posterfy.art/',
               logo: 'https://www.posterfy.art/ico.png',
-              description:
-                'Open-source album poster generator powered by Spotify API',
-              sameAs: ['https://github.com/posterfy/posterfy'],
+              description: 'Album poster generator powered by Spotify API',
             }),
           }}
         />

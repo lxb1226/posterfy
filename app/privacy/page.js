@@ -396,17 +396,7 @@ export default function PrivacyPolicy() {
           <ul>
             <li>
               <strong>Email:</strong>{' '}
-              <a href='mailto:privacy@posterfy.art'>privacy@posterfy.art</a>
-            </li>
-            <li>
-              <strong>GitHub:</strong>{' '}
-              <a
-                href='https://github.com/avictormorais/posterfy/issues'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                Open an issue
-              </a>
+              <a href='mailto:heyjude1817@gmail.com'>heyjude1817@gmail.com</a>
             </li>
             <li>
               <strong>Website:</strong> <a href='/contact'>Contact page</a>

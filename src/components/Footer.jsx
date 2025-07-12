@@ -1,20 +1,19 @@
 'use client';
 
-import styled, { keyframes } from 'styled-components';
-import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
-import Icon from './icons/icon';
+import { useTranslation } from 'react-i18next';
 import {
-  FaGithub,
-  FaHeart,
-  FaShieldAlt,
-  FaFileContract,
-  FaInfoCircle,
   FaEnvelope,
+  FaFileContract,
+  FaHeart,
+  FaInfoCircle,
   FaNewspaper,
   FaPalette,
+  FaShieldAlt,
   FaSitemap,
 } from 'react-icons/fa';
+import styled, { keyframes } from 'styled-components';
+import Icon from './icons/icon';
 
 const float = keyframes`
   0% { transform: translateY(0px) rotate(0deg); }
@@ -199,39 +198,6 @@ const FooterLink = styled(Link)`
   }
 `;
 
-const ExternalLink = styled.a`
-  color: rgba(255, 255, 255, 0.7);
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 4px 0;
-
-  svg {
-    font-size: 0.85rem;
-    opacity: 0.8;
-  }
-
-  &:hover {
-    color: var(--PosterfyGreen);
-    transform: translateX(5px);
-
-    svg {
-      opacity: 1;
-    }
-  }
-
-  @media (max-width: 768px) {
-    justify-content: center;
-
-    &:hover {
-      transform: translateY(-2px);
-    }
-  }
-`;
-
 const SocialSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -252,51 +218,6 @@ const SocialSection = styled.div`
   @media (max-width: 768px) {
     grid-column: span 1;
     align-items: center;
-  }
-`;
-
-const SocialLinks = styled.div`
-  display: flex;
-  gap: 15px;
-
-  @media (max-width: 480px) {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-`;
-
-const GithubLink = styled.a`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 500;
-  padding: 10px 18px;
-  border-radius: 25px;
-  background: rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-
-  svg {
-    font-size: 1.2em;
-    transition: transform 0.3s ease;
-  }
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    border-color: var(--PosterfyGreen);
-
-    svg {
-      transform: rotate(360deg);
-    }
-  }
-
-  @media (max-width: 480px) {
-    font-size: 0.9em;
-    padding: 8px 14px;
   }
 `;
 
@@ -465,14 +386,7 @@ function Footer() {
 
           <CreditText>
             <div className='credit-content'>
-              {t('MadeBy')}{' '}
-              <a
-                href='https://github.com/avictormorais'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                Victor
-              </a>
+              {t('MadeBy')} <a href='mailto:heyjude1817@gmail.com'>Team</a>
             </div>
           </CreditText>
         </BrandSection>
@@ -494,14 +408,6 @@ function Footer() {
               <FaNewspaper />
               Blog
             </FooterLink>
-            <ExternalLink
-              href='https://github.com/avictormorais/posterfy'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              <FaGithub />
-              GitHub
-            </ExternalLink>
           </LinkColumn>
 
           {/* Product Links */}
@@ -535,15 +441,11 @@ function Footer() {
 
         {/* Social Section */}
         <SocialSection>
-          <SocialLinks>
-            <GithubLink
-              href='https://github.com/avictormorais/posterfy'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              <FaGithub /> {t('ViewGitHub', 'GitHub')}
-            </GithubLink>
-          </SocialLinks>
+          <div
+            style={{ fontSize: '0.9rem', color: 'rgba(255, 255, 255, 0.7)' }}
+          >
+            Contact: heyjude1817@gmail.com
+          </div>
         </SocialSection>
 
         {/* Bottom Section */}
@@ -552,12 +454,6 @@ function Footer() {
             <FaHeart /> © {currentYear} Posterfy.{' '}
             {t('AllRights', 'All rights reserved.')}
           </CopyrightText>
-
-          <div
-            style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.5)' }}
-          >
-            Free • Open Source • Educational
-          </div>
         </BottomSection>
       </FooterContent>
     </Container>
